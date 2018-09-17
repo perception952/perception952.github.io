@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="题目：不用+等运算符运算实现加法">
+<meta name="description" content="题目：计算出n阶乘中尾部零的个数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lintcode:a+b">
-<meta property="og:url" content="http://yoursite.com/2018/09/16/lintcode-a-b/index.html">
+<meta property="og:title" content="lintcode尾部的零">
+<meta property="og:url" content="http://yoursite.com/2018/09/17/lintcode尾部的零/index.html">
 <meta property="og:site_name" content="学习随笔">
-<meta property="og:description" content="题目：不用+等运算符运算实现加法">
+<meta property="og:description" content="题目：计算出n阶乘中尾部零的个数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-16T14:33:02.454Z">
+<meta property="og:updated_time" content="2018-09-17T14:11:11.182Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lintcode:a+b">
-<meta name="twitter:description" content="题目：不用+等运算符运算实现加法">
+<meta name="twitter:title" content="lintcode尾部的零">
+<meta name="twitter:description" content="题目：计算出n阶乘中尾部零的个数">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/16/lintcode-a-b/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/17/lintcode尾部的零/"/>
 
 
 
 
 
-  <title>lintcode:a+b | 学习随笔</title>
+  <title>lintcode尾部的零 | 学习随笔</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/16/lintcode-a-b/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/17/lintcode尾部的零/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李晨阳">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">lintcode:a+b</h1>
+          <h1 class="post-title" itemprop="name headline">lintcode尾部的零</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-16T22:17:51+08:00">
-                2018-09-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T21:49:43+08:00">
+                2018-09-17
               </time>
             
 
@@ -300,7 +300,7 @@
 
       
         <hr>
-<p>题目：不用+等运算符运算实现加法<br><a id="more"></a><br>思路很明确就是用二进制来运算,<br>1.and运算&amp;相同位的两个数字为一则为1，如有一个不为1则为0<br>2.or运算|相同位只要有一个1即为1<br>3.xor异或运算^相同位不同则为1，相同为0<br>1的二进制….0001<br>2的二进制….0010<br>3的二进制….0011<br>4的二进制….0100<br>由此我们可以推测出不进位时a+b=a|b,需要进位时先计算a^b，再计算应该进位的值(a&amp;b)&lt;&lt;1,递归调用<br>int aplusb(int a, int b) {<br>    if((a&amp;b) == 0)<br>        return a|b;<br>    return aplusb(a^b,(a&amp;b)&lt;&lt;1);<br>}</p>
+<p>题目：计算出n阶乘中尾部零的个数<br><a id="more"></a><br>1、2、3、4、5、6、7、8、9、10、11<br>…、5…、10…、15…、20…、25…<br>这些数中每5个产生一个0，化简成5k<br>…、25…50…75…100…125…<br>将其中k=5,10,15,20又能产生一个0，由此递归得<br>while(n)<br>{<br>    num += n / 5;<br>    n = n / 5;<br>}<br>解题关键在于如何解决25的倍数这些数，细心观察化简为5k后规律是一致的</p>
 
       
     </div>
@@ -325,8 +325,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/16/hexo命令/" rel="next" title="hexo命令">
-                <i class="fa fa-chevron-left"></i> hexo命令
+              <a href="/2018/09/16/lintcode-a-b/" rel="next" title="lintcode:a+b">
+                <i class="fa fa-chevron-left"></i> lintcode:a+b
               </a>
             
           </div>
@@ -334,10 +334,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/17/lintcode尾部的零/" rel="prev" title="lintcode尾部的零">
-                lintcode尾部的零 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
