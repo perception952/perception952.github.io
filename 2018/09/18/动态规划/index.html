@@ -84,9 +84,11 @@
 <meta property="og:url" content="http://yoursite.com/2018/09/18/动态规划/index.html">
 <meta property="og:site_name" content="学习随笔">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-18T15:26:06.645Z">
+<meta property="og:image" content="http://i1.bvimg.com/661990/a64044598dba9818.jpg">
+<meta property="og:updated_time" content="2018-09-18T15:29:56.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划">
+<meta name="twitter:image" content="http://i1.bvimg.com/661990/a64044598dba9818.jpg">
 
 
 
@@ -298,7 +300,7 @@
       
         <hr>
 <a id="more"></a>
-<p>有一座高度是10级台阶的楼梯，从下往上走，每跨一步只能向上1级或2级台阶，求一共有多少种走法，经典的动态规划问题<br>动态规划当中包含三个重要的概念：最优子结构，边界，状态转移公式<br>对于这题最优子结构为F(10)=F(9)+F(8),边界为F(1)和F(2),状态转移方程为F(N)=F(N-1)+F(N-2),由此得递归函数<br>int getClimbingWays(int n){<br>    if(n&lt;=0) return 0;<br>    if(n==1) return 1;<br>    if(n==2) return 2;<br>    return getClimbingWays(n-1) + getClimbingWays(n-2)<br>}<br>(<a href="http://i1.bvimg.com/661990/a64044598dba9818.jpg" target="_blank" rel="noopener">http://i1.bvimg.com/661990/a64044598dba9818.jpg</a>)<br>接下来对该函数进行时间优化,用map来存储信息，也就是备忘录算法<br>int getClimbingWays(Map&lt;Integer,Integer&gt; map,int n){<br>    if(n&lt;=0) return 0;<br>    if(n==1) return 1;<br>    if(n==2) return 2;<br>    if(map.containsKey(n)){<br>        return map.get(n);<br>    }else{<br>    int value = getClimbingWays(map,n-1)+getClimbingWays(map,n-2);<br>    map.put(n,value);<br>    return value;<br>}<br>}<br>上述算法都是自顶向下计算，这次换成自底向上计算，也就是动态规划算法<br>int getClimbingWays(int n){<br>    if(n&lt;=0) return 0;<br>    if(n==1) return 1;<br>    if(n==2) return 2;<br>    int a = 1;<br>    int b = 2;<br>    int temp = 0;<br>    for(int i=3;i&lt;=n;i++){<br>        temp = a+b;<br>        a = b;<br>        b = temp;<br>    }<br>    return temp;<br>}<br>时间复杂度为o(n)空间复杂度为o(1)实现了最优化，这就是动态规划</p>
+<p>有一座高度是10级台阶的楼梯，从下往上走，每跨一步只能向上1级或2级台阶，求一共有多少种走法，经典的动态规划问题<br>动态规划当中包含三个重要的概念：最优子结构，边界，状态转移公式<br>对于这题最优子结构为F(10)=F(9)+F(8),边界为F(1)和F(2),状态转移方程为F(N)=F(N-1)+F(N-2),由此得递归函数<br>int getClimbingWays(int n){<br>    if(n&lt;=0) return 0;<br>    if(n==1) return 1;<br>    if(n==2) return 2;<br>    return getClimbingWays(n-1) + getClimbingWays(n-2)<br>}<br><img src="http://i1.bvimg.com/661990/a64044598dba9818.jpg" alt=""><br>接下来对该函数进行时间优化,用map来存储信息，也就是备忘录算法<br>int getClimbingWays(Map&lt;Integer,Integer&gt; map,int n){<br>    if(n&lt;=0) return 0;<br>    if(n==1) return 1;<br>    if(n==2) return 2;<br>    if(map.containsKey(n)){<br>        return map.get(n);<br>    }else{<br>    int value = getClimbingWays(map,n-1)+getClimbingWays(map,n-2);<br>    map.put(n,value);<br>    return value;<br>}<br>}<br>上述算法都是自顶向下计算，这次换成自底向上计算，也就是动态规划算法<br>int getClimbingWays(int n){<br>    if(n&lt;=0) return 0;<br>    if(n==1) return 1;<br>    if(n==2) return 2;<br>    int a = 1;<br>    int b = 2;<br>    int temp = 0;<br>    for(int i=3;i&lt;=n;i++){<br>        temp = a+b;<br>        a = b;<br>        b = temp;<br>    }<br>    return temp;<br>}<br>时间复杂度为o(n)空间复杂度为o(1)实现了最优化，这就是动态规划</p>
 
       
     </div>
