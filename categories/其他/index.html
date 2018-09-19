@@ -79,17 +79,16 @@
 
 
 
-<meta name="description" content="题目：计算出n阶乘中尾部零的个数">
-<meta property="og:type" content="article">
-<meta property="og:title" content="lintcode:尾部的零">
-<meta property="og:url" content="http://yoursite.com/2018/09/17/lintcode尾部的零/index.html">
+<meta name="description" content="Share some experience in learning">
+<meta property="og:type" content="website">
+<meta property="og:title" content="学习随笔">
+<meta property="og:url" content="http://yoursite.com/categories/其他/index.html">
 <meta property="og:site_name" content="学习随笔">
-<meta property="og:description" content="题目：计算出n阶乘中尾部零的个数">
+<meta property="og:description" content="Share some experience in learning">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-19T14:31:55.040Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lintcode:尾部的零">
-<meta name="twitter:description" content="题目：计算出n阶乘中尾部零的个数">
+<meta name="twitter:title" content="学习随笔">
+<meta name="twitter:description" content="Share some experience in learning">
 
 
 
@@ -119,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/17/lintcode尾部的零/"/>
+  <link rel="canonical" href="http://yoursite.com/categories/其他/"/>
 
 
 
 
 
-  <title>lintcode:尾部的零 | 学习随笔</title>
+  <title>分类: 其他 | 学习随笔</title>
   
 
 
@@ -144,7 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,168 +247,83 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block category">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>其他<small>分类</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/17/lintcode尾部的零/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李晨阳">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习随笔">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2018/09/16/hexo命令/" itemprop="url">
+              
+                <span itemprop="name">hexo命令</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">lintcode:尾部的零</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-17T21:49:43+08:00">
-                2018-09-17
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-09-16T15:42:13+08:00"
+              content="2018-09-16" >
+          09-16
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/刷题/" itemprop="url" rel="index">
-                    <span itemprop="name">刷题</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <hr>
-<p>题目：计算出n阶乘中尾部零的个数<br><a id="more"></a><br>1、2、3、4、5、6、7、8、9、10、11<br>…、5…、10…、15…、20…、25…<br>这些数中每5个产生一个0，化简成5k<br>…、25…50…75…100…125…<br>将其中k=5,10,15,20又能产生一个0，由此递归得<br>while(n)<br>{<br>    num += n / 5;<br>    n = n / 5;<br>}<br>解题关键在于如何解决25的倍数这些数，细心观察化简为5k后规律是一致的</p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/09/16/lintcode-a-b/" rel="next" title="lintcode:a+b">
-                <i class="fa fa-chevron-left"></i> lintcode:a+b
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/18/动态规划/" rel="prev" title="动态规划">
-                动态规划 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
+      
+        
 
-    <div class="post-spread">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/07/18/hello-world/" itemprop="url">
+              
+                <span itemprop="name">常用网站集</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-07-18T10:52:51+08:00"
+              content="2018-07-18" >
+          07-18
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
       
     </div>
+
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -417,10 +331,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -640,10 +550,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
