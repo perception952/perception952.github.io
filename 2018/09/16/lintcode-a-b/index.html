@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="学习随笔">
 <meta property="og:description" content="题目：不用+等运算符运算实现加法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-19T14:29:11.207Z">
+<meta property="og:updated_time" content="2018-09-20T02:23:17.436Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lintcode:a+b">
 <meta name="twitter:description" content="题目：不用+等运算符运算实现加法">
@@ -352,7 +352,7 @@
 
       
         <hr>
-<p>题目：不用+等运算符运算实现加法<br><a id="more"></a><br>思路很明确就是用二进制来运算,<br>1.and运算&amp;相同位的两个数字为一则为1，如有一个不为1则为0<br>2.or运算|相同位只要有一个1即为1<br>3.xor异或运算^相同位不同则为1，相同为0<br>1的二进制….0001<br>2的二进制….0010<br>3的二进制….0011<br>4的二进制….0100<br>由此我们可以推测出不进位时a+b=a|b,需要进位时先计算a^b，再计算应该进位的值(a&amp;b)&lt;&lt;1,递归调用<br>int aplusb(int a, int b) {<br>    if((a&amp;b) == 0)<br>        return a|b;<br>    return aplusb(a^b,(a&amp;b)&lt;&lt;1);<br>}</p>
+<p>题目：不用+等运算符运算实现加法<br><a id="more"></a><br>思路很明确就是用二进制来运算,<br>1.and运算&amp;相同位的两个数字为一则为1，如有一个不为1则为0<br>2.or运算|相同位只要有一个1即为1<br>3.xor异或运算^相同位不同则为1，相同为0<br>1的二进制….0001<br>2的二进制….0010<br>3的二进制….0011<br>4的二进制….0100<br>由此我们可以推测出不进位时a+b=a|b,需要进位时先计算a^b，再计算应该进位的值(a&amp;b)&lt;&lt;1,递归调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int aplusb(int a, int b) &#123;  </span><br><span class="line">    if((a&amp;b) == 0)</span><br><span class="line">        return a|b;</span><br><span class="line">    return aplusb(a^b,(a&amp;b)&lt;&lt;1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
