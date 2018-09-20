@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="学习随笔">
 <meta property="og:description" content="题目：计算出n阶乘中尾部零的个数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-20T02:09:54.108Z">
+<meta property="og:updated_time" content="2018-09-20T02:13:27.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lintcode:尾部的零">
 <meta name="twitter:description" content="题目：计算出n阶乘中尾部零的个数">
@@ -352,9 +352,8 @@
 
       
         <hr>
-<p>题目：计算出n阶乘中尾部零的个数<br><a id="more"></a><br>1、2、3、4、5、6、7、8、9、10、11<br>…、5…、10…、15…、20…、25…<br>这些数中每5个产生一个0，化简成5k<br>…、25…50…75…100…125…<br>将其中k=5,10,15,20又能产生一个0，由此递归得</p>
-<p><table><tr><td bgcolor="#0099ff"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">while(n)</span><br><span class="line">&#123;</span><br><span class="line">    num += n / 5;</span><br><span class="line">    n = n / 5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></td></tr></table></p>
-<p><br>解题关键在于如何解决25的倍数这些数，细心观察化简为5k后规律是一致的</p>
+<p>题目：计算出n阶乘中尾部零的个数<br><a id="more"></a><br>1、2、3、4、5、6、7、8、9、10、11<br>…、5…、10…、15…、20…、25…<br>这些数中每5个产生一个0，化简成5k<br>…、25…50…75…100…125…<br>将其中k=5,10,15,20又能产生一个0，由此递归得<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=#000000&gt;</span><br><span class="line">while(n)</span><br><span class="line">&#123;</span><br><span class="line">    num += n / 5;</span><br><span class="line">    n = n / 5;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</span><br></pre></td></tr></table></figure></p>
+<p>解题关键在于如何解决25的倍数这些数，细心观察化简为5k后规律是一致的</p>
 
       
     </div>
