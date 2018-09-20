@@ -79,17 +79,14 @@
 
 
 
-<meta name="description" content="从Spring2.0以来Spring允许使用XML Schema的配置方式来简化Spring配置文件，这种方式更加简洁,好好享用这份蜜糖使用p:命名空间简化配置设置注入首先导入XML Schema里的p:命名空间xmlns:p=”http://www.springframework.org/schema/p&amp;quot;原：    使用p:命名空间：使用c：命名空间简化构造注入xmlns:c=”h">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于XML Schema的简化配置">
 <meta property="og:url" content="http://yoursite.com/2018/09/20/基于XML-Schema的简化配置/index.html">
 <meta property="og:site_name" content="学习随笔">
-<meta property="og:description" content="从Spring2.0以来Spring允许使用XML Schema的配置方式来简化Spring配置文件，这种方式更加简洁,好好享用这份蜜糖使用p:命名空间简化配置设置注入首先导入XML Schema里的p:命名空间xmlns:p=”http://www.springframework.org/schema/p&amp;quot;原：    使用p:命名空间：使用c：命名空间简化构造注入xmlns:c=”h">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-20T15:49:22.736Z">
+<meta property="og:updated_time" content="2018-09-20T15:55:41.578Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于XML Schema的简化配置">
-<meta name="twitter:description" content="从Spring2.0以来Spring允许使用XML Schema的配置方式来简化Spring配置文件，这种方式更加简洁,好好享用这份蜜糖使用p:命名空间简化配置设置注入首先导入XML Schema里的p:命名空间xmlns:p=”http://www.springframework.org/schema/p&amp;quot;原：    使用p:命名空间：使用c：命名空间简化构造注入xmlns:c=”h">
 
 
 
@@ -351,8 +348,11 @@
       
 
       
-        <a id="more"></a>
-<p>从Spring2.0以来Spring允许使用XML Schema的配置方式来简化Spring配置文件，这种方式更加简洁,好好享用这份蜜糖<br>使用p:命名空间简化配置设置注入<br>首先导入XML Schema里的p:命名空间<br>xmlns:p=”<a href="http://www.springframework.org/schema/p&quot;" target="_blank" rel="noopener">http://www.springframework.org/schema/p&quot;</a><br>原：<property name="axe" ref="stoneAxe"><br>    <property name="age" value="29"><br>使用p:命名空间：<bean id="class=" p:age="29" p:axe-ref="stoneAxe"><br>使用c：命名空间简化构造注入<br>xmlns:c=”<a href="http://www.springframework.org/schema/c&quot;" target="_blank" rel="noopener">http://www.springframework.org/schema/c&quot;</a><br>原<constructor-arg value="29"><br>    <constructor-arg ref="steelAxe"><br>    <constructor-arg index="2" value="hello"><br>使用c:<bean id="class=" c:age="20" c:axe-ref="steelAxe" c:_0="29"></bean></constructor-arg></constructor-arg></constructor-arg></bean></property></property></p>
+        <hr>
+<a id="more"></a>
+<p>从Spring2.0以来Spring允许使用XML Schema的配置方式来简化Spring配置文件，这种方式更加简洁,好好享用这份蜜糖<br>使用p:命名空间简化配置设置注入<br>首先导入XML Schema里的p:命名空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xmlns:p=&quot;http://www.springframework.org/schema/p&quot;</span><br><span class="line">&lt;property name=&quot;axe&quot; ref=&quot;stoneAxe&quot;/&gt;</span><br><span class="line">&lt;property name=&quot;age&quot; value=&quot;29&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用p:命名空间：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id= class= p:age=&quot;29&quot; p:axe-ref=&quot;stoneAxe&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用c：命名空间简化构造注入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">xmlns:c=&quot;http://www.springframework.org/schema/c&quot;</span><br><span class="line">原&lt;constructor-arg value=&quot;29&quot;/&gt;</span><br><span class="line">	&lt;constructor-arg ref=&quot;steelAxe&quot;/&gt;</span><br><span class="line">	&lt;constructor-arg index=&quot;2&quot; value=&quot;hello&quot;/&gt;</span><br><span class="line">使用c:&lt;bean id= class= c:age=20 c:axe-ref=&quot;steelAxe&quot; c:_0=&quot;29&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
