@@ -79,18 +79,15 @@
 
 
 
-<meta name="description" content="JAVA反射机制是在运行状态中，对于任意一个类，都能知道这个类的所有属性和方法：对于任意一个类都能够调用它的任意一个方法和属性；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java反射">
 <meta property="og:url" content="http://yoursite.com/2018/09/26/java反射/index.html">
 <meta property="og:site_name" content="学习随笔">
-<meta property="og:description" content="JAVA反射机制是在运行状态中，对于任意一个类，都能知道这个类的所有属性和方法：对于任意一个类都能够调用它的任意一个方法和属性；">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://i4.fuimg.com/661990/d163f6dba9c5e3a5.jpg">
-<meta property="og:updated_time" content="2018-09-26T15:23:23.893Z">
+<meta property="og:updated_time" content="2018-09-27T12:42:53.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java反射">
-<meta name="twitter:description" content="JAVA反射机制是在运行状态中，对于任意一个类，都能知道这个类的所有属性和方法：对于任意一个类都能够调用它的任意一个方法和属性；">
 <meta name="twitter:image" content="http://i4.fuimg.com/661990/d163f6dba9c5e3a5.jpg">
 
 
@@ -354,7 +351,11 @@
 
       
         <hr>
+<a id="more"></a>
 <p>JAVA反射机制是在运行状态中，对于任意一个类，都能知道这个类的所有属性和方法：对于任意一个类都能够调用它的任意一个方法和属性；<br><img src="http://i4.fuimg.com/661990/d163f6dba9c5e3a5.jpg" alt="反射"></p>
+<h3 id="获取Class对象的三种方式"><a href="#获取Class对象的三种方式" class="headerlink" title="获取Class对象的三种方式"></a>获取Class对象的三种方式</h3><p>Student stu = new Student();//产生一个Student对象，一个Class对象1.Class stuClass = stu.getClass();<br>2.Class stuClass = Student.class;<br>3.Class stuClass = Class.forname(包名.类名);<br>在运行期间一个类只能产生一个Class对象</p>
+<h3 id="通过反射获取构造方法并使用"><a href="#通过反射获取构造方法并使用" class="headerlink" title="通过反射获取构造方法并使用"></a>通过反射获取构造方法并使用</h3><p>student类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package suanfa;</span><br><span class="line"></span><br><span class="line">public class Student &#123;</span><br><span class="line">	Student(String str)&#123;</span><br><span class="line">		System.out.println(&quot;默认的构造方法s=&quot;+str);</span><br><span class="line">	&#125;</span><br><span class="line">	public Student() &#123;</span><br><span class="line">		System.out.println(&quot;调用了公有,无参数构造方法执行&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public Student(char name) &#123;</span><br><span class="line">		System.out.println(&quot;姓名:&quot;+name);</span><br><span class="line">	&#125;</span><br><span class="line">	public Student(String name, int age) &#123;</span><br><span class="line">		System.out.println(&quot;姓名&quot;+name+&quot;年龄&quot;+age);</span><br><span class="line">	&#125;</span><br><span class="line">	protected Student(boolean n) &#123;</span><br><span class="line">		System.out.println(&quot;受保护的构造方法n=&quot;+n);</span><br><span class="line">	&#125;</span><br><span class="line">	private Student(int age) &#123;</span><br><span class="line">		System.out.println(&quot;私有化的构造方法年龄:&quot;+age);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//加载Class对象：</span><br><span class="line">Class clazz = Class.forName(&quot;suanfa.Student&quot;);</span><br><span class="line">//获取所有公有构造方法</span><br><span class="line">Constructor[] conArray = clazz.getConstructors();</span><br><span class="line">//获取所有的构造方法</span><br><span class="line">conArray = clazz.getDeclaredConstructors();</span><br><span class="line">//获取公有，无参的构造方法</span><br><span class="line">Constructor con = clazz.getConstructor(null);</span><br><span class="line">con = clazz.getDeclaredConstructor(char.class);</span><br><span class="line">con.newInstance(&apos;男&apos;);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -440,8 +441,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -492,6 +502,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取Class对象的三种方式"><span class="nav-number">1.</span> <span class="nav-text">获取Class对象的三种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过反射获取构造方法并使用"><span class="nav-number">2.</span> <span class="nav-text">通过反射获取构造方法并使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
