@@ -354,18 +354,14 @@
 
       
         
-          
-            <hr>
-<p>连接mysql:mysql -h+ip -uroot -p+密码<br>Mysql仅支持正则表达式的一个子集，关键字为REGEXP类似于Mysql的like,不同在于like仅当字符完全匹配才返回数据而REGEXP如果列值出现匹配文本就返回数据</p>
-<p>##OR匹配<br>用’|’,匹配多个字符时可用[123]为[1|2|3]的缩写<br>[^123]为除123以外</p>
-<p>##匹配范围<br>[1-9],[a-z]匹配是默认不区分大小写的，可使用BINATY关键字如where name REGEXP BINARY ‘Li ‘</p>
-<p>##匹配特殊字符<br>对特殊字符转义用\为前引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\\f		换页</span><br><span class="line">\\n		换行</span><br><span class="line">\\r		回车</span><br><span class="line">\\t 	制表</span><br><span class="line">\\v		纵向制表</span><br></pre></td></tr></table></figure></p>
-<p>##匹配字符类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[:alnum:]		任意字母和数字</span><br><span class="line">[:alpha:]		任意字母</span><br><span class="line">[:blank:]		空格和制表</span><br><span class="line">[:digit:]		任意数字</span><br><span class="line">[:lower:]		任意小写字母</span><br><span class="line">[:upper:]       任意大写字母</span><br><span class="line">[:print:]		任意可打印字符</span><br><span class="line">[:space:]       任意空白字符</span><br></pre></td></tr></table></figure></p>
-<p>##匹配多个实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*      多个匹配</span><br><span class="line">+	   1个或多个匹配</span><br><span class="line">？	   0个或1个匹配</span><br><span class="line">&#123;n&#125;	   指定数目的匹配</span><br><span class="line">&#123;n,&#125;   不少于指定数目的匹配</span><br><span class="line">&#123;n,m&#125;  匹配数目的范围</span><br></pre></td></tr></table></figure></p>
-<p>例如where name REGEXP ‘\([0-9] sticks?\)’<br>s后的?使s变得可选可匹配stricks或stick</p>
-<p>##定位符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">^			文本的开始</span><br><span class="line">$			文本的结束</span><br><span class="line">[[:&lt;:]] 	词的开始</span><br><span class="line">[[:&gt;:]] 	词的结束</span><br></pre></td></tr></table></figure></p>
-
-          
+          <hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/08/mysql正则表达式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
