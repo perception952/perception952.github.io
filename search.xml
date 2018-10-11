@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Eclipse添加用户库]]></title>
+    <url>%2F2018%2F10%2F10%2FEclipse%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%BA%93%2F</url>
+    <content type="text"><![CDATA[添加用户库是为了方便管理多个JAR文件，例如在添加Hibnate和Struts时会很方便右键项目节点，单击”Build Path” -&gt; “Configure Build Path…”,在出现的对话框中选中”User Library”,并单击”next”,在右边选中”User Library”,如需要新增用户库就单击”New”,选中要编辑的用户库的名字，然后单击”Add External JARS”]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql正则表达式]]></title>
+    <url>%2F2018%2F10%2F08%2Fmysql%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[连接mysql:mysql -h+ip -uroot -p+密码Mysql仅支持正则表达式的一个子集，关键字为REGEXP类似于Mysql的like,不同在于like仅当字符完全匹配才返回数据而REGEXP如果列值出现匹配文本就返回数据 ##OR匹配用’|’,匹配多个字符时可用[123]为[1|2|3]的缩写[^123]为除123以外 ##匹配范围[1-9],[a-z]匹配是默认不区分大小写的，可使用BINATY关键字如where name REGEXP BINARY ‘Li ‘ ##匹配特殊字符对特殊字符转义用\为前引12345\\f 换页\\n 换行\\r 回车\\t 制表\\v 纵向制表 ##匹配字符类12345678[:alnum:] 任意字母和数字[:alpha:] 任意字母[:blank:] 空格和制表[:digit:] 任意数字[:lower:] 任意小写字母[:upper:] 任意大写字母[:print:] 任意可打印字符[:space:] 任意空白字符 ##匹配多个实例123456* 多个匹配+ 1个或多个匹配？ 0个或1个匹配&#123;n&#125; 指定数目的匹配&#123;n,&#125; 不少于指定数目的匹配&#123;n,m&#125; 匹配数目的范围 例如where name REGEXP ‘\([0-9] sticks?\)’s后的?使s变得可选可匹配stricks或stick ##定位符1234^ 文本的开始$ 文本的结束[[:&lt;:]] 词的开始[[:&gt;:]] 词的结束]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[java反射]]></title>
+    <url>%2F2018%2F09%2F26%2Fjava%E5%8F%8D%E5%B0%84%2F</url>
+    <content type="text"><![CDATA[JAVA反射机制是在运行状态中，对于任意一个类，都能知道这个类的所有属性和方法：对于任意一个类都能够调用它的任意一个方法和属性； 获取Class对象的三种方式Student stu = new Student();//产生一个Student对象，一个Class对象1.Class stuClass = stu.getClass();2.Class stuClass = Student.class;3.Class stuClass = Class.forname(包名.类名);在运行期间一个类只能产生一个Class对象 通过反射获取构造方法并使用student类1234567891011121314151617181920212223package suanfa;public class Student &#123; Student(String str)&#123; System.out.println(&quot;默认的构造方法s=&quot;+str); &#125; public Student() &#123; System.out.println(&quot;调用了公有,无参数构造方法执行&quot;); &#125; public Student(char name) &#123; System.out.println(&quot;姓名:&quot;+name); &#125; public Student(String name, int age) &#123; System.out.println(&quot;姓名&quot;+name+&quot;年龄&quot;+age); &#125; protected Student(boolean n) &#123; System.out.println(&quot;受保护的构造方法n=&quot;+n); &#125; private Student(int age) &#123; System.out.println(&quot;私有化的构造方法年龄:&quot;+age); &#125;&#125; 12345678910//加载Class对象：Class clazz = Class.forName(&quot;suanfa.Student&quot;);//获取所有公有构造方法Constructor[] conArray = clazz.getConstructors();//获取所有的构造方法conArray = clazz.getDeclaredConstructors();//获取公有，无参的构造方法Constructor con = clazz.getConstructor(null);con = clazz.getDeclaredConstructor(char.class);con.newInstance(&apos;男&apos;);]]></content>
+      <categories>
+        <category>JavaSE</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[并查集]]></title>
+    <url>%2F2018%2F09%2F26%2F%E5%B9%B6%E6%9F%A5%E9%9B%86%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[绿色计算大赛文件查看器]]></title>
+    <url>%2F2018%2F09%2F25%2F%E7%BB%BF%E8%89%B2%E8%AE%A1%E7%AE%97%E5%A4%A7%E8%B5%9B%E6%96%87%E4%BB%B6%E6%9F%A5%E7%9C%8B%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[编写代码实现对给定文件夹目录结构的展示，如果文件的英文夹数则在其名字之前加上+–若是文件则加上–，上级目录与下级目录，文件下级用两个空格作为间隔 123456789101112131415161718192021import java.io.File;public class Task &#123; /********** BEGIN **********/ public void showDirStructure(File file) &#123; System.out.println(&quot;+--&quot; + file.getName()); showDirTree(file,&quot; &quot;); &#125; public static void showDirTree(File dir,String interval)&#123; File[] files = dir.listFiles(); interval += &quot; &quot;; for (File file : files) &#123; if(!file.isDirectory())&#123; System.out.println(interval + &quot;--&quot; + file.getName()); &#125;else&#123; System.out.println(interval + &quot;+--&quot; + file.getName()); showDirTree(file,interval + &quot; &quot;); &#125; &#125; &#125; /********** END **********/&#125;]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode链表中倒数第k个节点]]></title>
+    <url>%2F2018%2F09%2F25%2FLeetcode%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E8%8A%82%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[输入一个链表，输出该链表中倒数第k个节点 分析：采用单循环用两个指针,一个节点node1先开始跑，指针node1跑到k-1个节点后，另一个节点node2开始跑,当node1跑到终点node2就是倒数第k个节点1234567891011121314151617181920212223242526272829public class ListNode&#123; int val; ListNode next; ListNode(int x) &#123;val = x; &#125;&#125;public class Solution &#123; public ListNode FindKthToTail(ListNode head, int k) &#123; //如果链表为空或k&lt;=0 if(head == null || k &lt;= 0) &#123; return null; &#125; ListNode node1 = head , node2 = head; int count = 0; int index = k; while (node1 != null) &#123; node1 = node1.next; count ++; if (k &lt; 1 &amp;&amp; node1 != null) &#123; node2 = node2.next; &#125; k--; &#125; if(count &lt; index) return null; return node2; &#125;&#125;]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode反转链表]]></title>
+    <url>%2F2018%2F09%2F24%2FLeetcode%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[输入一个链表，反转后输出所有元素123456789101112131415161718192021public class ListNode&#123; int val; ListNode next; ListNode(int x) &#123;val = x; &#125;&#125;public class Solution &#123; public ListNode ReverseList(ListNode head) &#123; ListNode next = null; ListNode pre = null; while(head != null) &#123; next = head.next; head.next = pre; pre = head; head = next; &#125; return pre; &#125;&#125;]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Leetcode链表两数相加]]></title>
+    <url>%2F2018%2F09%2F23%2FLeetcode%E9%93%BE%E8%A1%A8%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0%2F</url>
+    <content type="text"><![CDATA[题目：给定两个非空链表来表示两个非负整数，位数按照逆序方式储存，它们的每个节点只储存单个数字，将两数相加返回一个新的链表示例：(2-&gt;4-&gt;3)+(5-&gt;6-&gt;4)(7-&gt;0-&gt;8)123456789101112131415161718192021222324252627282930public class ListNode&#123; int val; ListNode next; ListNode(int x) &#123;val = x; &#125;&#125;public class Solution &#123; public ListNode addTwoNumbers(ListNode l1,ListNode l2) &#123; ListNode dummyHead = new ListNode(0); ListNode p = l1 , q = l2 , curr = dummyHead; //carry表示进位数 int carry = 0; while(p != null || q != null) &#123; int x = (p != null) ? p.val : 0; int y = (q != null) ? q.val : 0; int sum = carry + x + y; carry = sum / 10; curr.next = new ListNode(sum%10); curr = curr.next; if (p != null) p = p.next; if (q != null) q = q.next; &#125; if (carry &gt; 0) &#123; curr.next = new ListNode(carry); &#125; return dummyHead.next; &#125;&#125;]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[排序]]></title>
+    <url>%2F2018%2F09%2F21%2F%E6%8E%92%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[直接插入排序:将一条记录插入到已排好的有序表中，得到一个新的有序表123456789101112131415int a[]=&#123;98,76,109,34,67,190,80,12,14,89,1&#125;;int k=sizeof(a)/sizeof(a[0]);int j;for(int i=1;i&lt;k;i++)//循环从第2个元素开始&#123; if(a[i]&lt;a[i-1]) &#123; int temp=a[i]; for(j=i-1;j&gt;=0 &amp;&amp; a[j]&gt;temp;j--) &#123; a[j+1]=a[j]; &#125; a[j+1]=temp;//此处就是a[j+1]=temp; &#125;&#125; 冒泡排序:只比较相邻数字，下一次循环比较次数减一1234567891011121314void bubble_sort(int a[], int n)&#123; int i, j, temp; for (j = 0; j &lt; n - 1; j++) for (i = 0; i &lt; n - 1 - j; i++) &#123; if(a[i] &gt; a[i + 1]) &#123; temp = a[i]; a[i] = a[i + 1]; a[i + 1] = temp; &#125; &#125;&#125; 简单选择排序:找出每趟最小的数与第i个交换，n-1趟后完成排序123456789101112131415int a[10],i,j,k,t;for(i=0;i&lt;10;i++)&#123; t=i; for(j=i+1;j&lt;10;j++) &#123; if(a[t]&gt;a[j]) &#123; t=j &#125; &#125; int temp = a[i]; a[i]=a[t]; a[t]=temp;&#125; 归并排序：将已有序的子序列合并，得到完全有序序列这个代码就有点些复杂了，首先把一个序列不断划分子序列1234567891011void MergeSort(int sourceArr[], int tempArr[], int startIndex, int endIndex)&#123; int midIndex; if(startIndex &lt; endIndex) &#123; midIndex = startIndex + (endIndex-startIndex) / 2;//避免溢出int MergeSort(sourceArr, tempArr, startIndex, midIndex); MergeSort(sourceArr, tempArr, midIndex+1, endIndex); Merge(sourceArr, tempArr, startIndex, midIndex, endIndex); &#125;&#125; 然后就是如何合并子序列,temp只是一个用来暂时存放数据的数组例如：5678 1234合并一个指针i在5一个指针j在1还有个临时指针k直到前子序列和后子序列有一个已经合并完成，将另一个直接放到temp里1234567891011121314151617void Merge(int sourceArr[],int tempArr[], int startIndex, int midIndex, int endIndex)&#123; int i = startIndex, j=midIndex+1, k = startIndex; while(i!=midIndex+1 &amp;&amp; j!=endIndex+1) &#123; if(sourceArr[i] &gt; sourceArr[j]) tempArr[k++] = sourceArr[j++]; else tempArr[k++] = sourceArr[i++]; &#125; while(i != midIndex+1) tempArr[k++] = sourceArr[i++]; while(j != endIndex+1) tempArr[k++] = sourceArr[j++]; for(i=startIndex; i&lt;=endIndex; i++) sourceArr[i] = tempArr[i];&#125;]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[基于XML Schema的简化配置]]></title>
+    <url>%2F2018%2F09%2F20%2F%E5%9F%BA%E4%BA%8EXML-Schema%E7%9A%84%E7%AE%80%E5%8C%96%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[从Spring2.0以来Spring允许使用XML Schema的配置方式来简化Spring配置文件，这种方式更加简洁,好好享用这份蜜糖 使用p:命名空间简化配置设置注入12&lt;property name=&quot;axe&quot; ref=&quot;stoneAxe&quot;/&gt;&lt;property name=&quot;age&quot; value=&quot;29&quot;/&gt; 使用p:命名空间：首先导入XML Schema里的p:命名空间12xmlns:p=&quot;http://www.springframework.org/&lt;bean id= class= p:age=&quot;29&quot; p:axe-ref=&quot;stoneAxe&quot;/&gt; 使用c：命名空间简化构造注入123456&lt;constructor-arg value=&quot;29&quot;/&gt;&lt;constructor-arg ref=&quot;steelAxe&quot;/&gt;&lt;constructor-arg index=&quot;2&quot; value=&quot;hello&quot;/&gt;使用c:xmlns:c=&quot;http://www.springframework.org/&lt;bean id= class= c:age=20 c:axe-ref=&quot;steelAxe&quot; c:_0=&quot;29&quot;/&gt; 使用util:命名空间简化高级依赖关系配置获取其他Bean的属性值1234567&lt;bean id= class=&gt;&lt;!-- 获取id=person的getson()方法 --&gt;&lt;property name=&quot;targetBeanName&quot; value=&quot;person&quot;/&gt;&lt;property name=&quot;propertyPath&quot; value=&quot;son&quot;/&gt;&lt;!-- 简化后 --&gt;&lt;util:property-path id= path=&quot;person.son&quot;/&gt;&lt;/bean&gt; 注入其他bean中1234567&lt;property name=&quot;age&quot;&gt; &lt;bean id=&quot;person.son.age&quot; class= &quot;org.springframework.beans.factory.xonfig.PropertyPathFactoryBean&quot;/&gt;&lt;/property&gt;&lt;property name=&quot;age&quot;&gt; &lt;util:property-path path=&quot;person.son.age&quot;/&gt;&lt;/property&gt; 获取Field值123456789&lt;property name=&quot;tagetClass&quot; value=&quot;java.sql.Connection&quot;/&gt;&lt;property name=&quot;tagetField&quot; value=&quot;TRANSACTION_SERIALIZABLE&quot;&gt;使用util:获取Field值xmls:util=&quot;http://www.springframework.org/schema/util&quot;http://www.springframework.org/schema/utilhttp://www.springframework.org/schema/util/spring-util&quot;&lt;util:constant id=&quot;chan.age&quot; static-field=&quot;java.sql.Connection.TRANSACTION_SERIALIZABLE&quot;/&gt;]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[动态规划]]></title>
+    <url>%2F2018%2F09%2F18%2F%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%2F</url>
+    <content type="text"><![CDATA[有一座高度是10级台阶的楼梯，从下往上走，每跨一步只能向上1级或2级台阶，求一共有多少种走法，经典的动态规划问题动态规划当中包含三个重要的概念：最优子结构，边界，状态转移公式对于这题最优子结构为F(10)=F(9)+F(8),边界为F(1)和F(2),状态转移方程为F(N)=F(N-1)+F(N-2),由此得递归函数123456int getClimbingWays(int n)&#123; if(n&lt;=0) return 0; if(n==1) return 1; if(n==2) return 2; return getClimbingWays(n-1) + getClimbingWays(n-2)&#125; 接下来对该函数进行时间优化,用map来存储信息，也就是备忘录算法123456789101112int getClimbingWays(Map&lt;Integer,Integer&gt; map,int n)&#123; if(n&lt;=0) return 0; if(n==1) return 1; if(n==2) return 2; if(map.containsKey(n))&#123; return map.get(n); &#125;else&#123; int value = getClimbingWays(map,n-1)+getClimbingWays(map,n-2); map.put(n,value); return value;&#125;&#125; 上述算法都是自顶向下计算，这次换成自底向上计算，也就是动态规划算法1234567891011121314int getClimbingWays(int n)&#123; if(n&lt;=0) return 0; if(n==1) return 1; if(n==2) return 2; int a = 1; int b = 2; int temp = 0; for(int i=3;i&lt;=n;i++)&#123; temp = a+b; a = b; b = temp; &#125; return temp;&#125; 时间复杂度为o(n)空间复杂度为o(1)实现了最优化，这就是动态规划题目二：国王和金矿10个工人，5个金矿分别为500金/5人，200金/3人，300金/4人，350/3人，400金/5人分析：最优子结构有两个一个是4金矿10个人，一个是4金矿10-3人时，边界是只有一座金矿和给定的工人不够第一座金矿，设金矿数量为n,工人数为w黄金量为g[],金矿的用工量为p[]12345678910111213141516int getMostGold(int n,int w,int[] g ,int []p)&#123; int[] preResults = new int[p.length]; int[] results = new int[p.length]; for(int i=0;i&lt;=n;i++)&#123; if(i&lt;p[0]) preResults[i] = 0; else preResults[i] = g[0]; &#125; for(int i=0;i&lt;=w;i++)&#123; for(int j=0;j&lt;=w;j++)&#123; if(j&lt;p[i]) results[j] = preResults[j]; else results[j] = Math.max(reResults[j],preResults[j-p[i]+g[i]]); &#125; preResults = results; &#125; return results[n];&#125;]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[lintcode:尾部的零]]></title>
+    <url>%2F2018%2F09%2F17%2Flintcode%E5%B0%BE%E9%83%A8%E7%9A%84%E9%9B%B6%2F</url>
+    <content type="text"><![CDATA[题目：计算出n阶乘中尾部零的个数1、2、3、4、5、6、7、8、9、10、11…、5…、10…、15…、20…、25…这些数中每5个产生一个0，化简成5k…、25…50…75…100…125…将其中k=5,10,15,20又能产生一个0，由此递归得123456while(n)&#123; num += n / 5; n = n / 5;&#125;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; 解题关键在于如何解决25的倍数这些数，细心观察化简为5k后规律是一致的]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[lintcode:a+b]]></title>
+    <url>%2F2018%2F09%2F16%2Flintcode-a-b%2F</url>
+    <content type="text"><![CDATA[题目：不用+等运算符运算实现加法思路很明确就是用二进制来运算,1.and运算&amp;相同位的两个数字为一则为1，如有一个不为1则为02.or运算|相同位只要有一个1即为13.xor异或运算^相同位不同则为1，相同为01的二进制….00012的二进制….00103的二进制….00114的二进制….0100由此我们可以推测出不进位时a+b=a|b,需要进位时先计算a^b，再计算应该进位的值(a&amp;b)&lt;&lt;1,递归调用12345int aplusb(int a, int b) &#123; if((a&amp;b) == 0) return a|b; return aplusb(a^b,(a&amp;b)&lt;&lt;1);&#125;]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[hexo命令]]></title>
+    <url>%2F2018%2F09%2F16%2Fhexo%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[hexo n “我的博客” == hexo new “我的博客” #新建文章hexo g == hexo generate #生成hexo s == hexo server #启动服务预览hexo d == hexo deploy #部署 hexo server #Hexo会监视文件变动并自动更新，无须重启服务器hexo server -s #静态模式hexo server -p 5000 #更改端口hexo server -i 192.168.1.1 #自定义 IPhexo clean #清除缓存，若是网页正常情况下可以忽略这条命令]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[常用网站集]]></title>
+    <url>%2F2018%2F07%2F18%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to 大连民族大学 tags:This article is just to test my blog,welcome高清壁纸网站贴图库图片外联绿色计算机大赛在线绘图csdnlintCode刷题leetcode刷题]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+</search>
