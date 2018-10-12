@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于eclipse的web工程标注无效]]></title>
+    <url>%2F2018%2F10%2F12%2F%E5%85%B3%E4%BA%8Eeclipse%E7%9A%84web%E5%B7%A5%E7%A8%8B%E6%A0%87%E6%B3%A8%E6%97%A0%E6%95%88%2F</url>
+    <content type="text"><![CDATA[&lt;–!more–&gt;在eclipse里开发web项目时在使用servlet3.0的标注时我遇到了注释无效的问题，解决办法是在部署完项目后，右键项目的Export选择War File导入到tomcat的webapps下就能使用了]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Eclipse添加用户库]]></title>
     <url>%2F2018%2F10%2F10%2FEclipse%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E5%BA%93%2F</url>
     <content type="text"><![CDATA[添加用户库是为了方便管理多个JAR文件，例如在添加Hibnate和Struts时会很方便右键项目节点，单击”Build Path” -&gt; “Configure Build Path…”,在出现的对话框中选中”User Library”,并单击”next”,在右边选中”User Library”,如需要新增用户库就单击”New”,选中要编辑的用户库的名字，然后单击”Add External JARS”]]></content>
