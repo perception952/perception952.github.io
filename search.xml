@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[关于eclipse的web工程标注无效]]></title>
     <url>%2F2018%2F10%2F12%2F%E5%85%B3%E4%BA%8Eeclipse%E7%9A%84web%E5%B7%A5%E7%A8%8B%E6%A0%87%E6%B3%A8%E6%97%A0%E6%95%88%2F</url>
-    <content type="text"><![CDATA[&lt;–!more–&gt;在eclipse里开发web项目时在使用servlet3.0的标注时我遇到了注释无效的问题，解决办法是在部署完项目后，右键项目的Export选择War File导入到tomcat的webapps下就能使用了]]></content>
+    <content type="text"><![CDATA[在eclipse里开发web项目时在使用servlet3.0的标注时我遇到了注释无效的问题，解决办法是在部署完项目后，右键项目的Export选择War File导入到tomcat的webapps下就能使用了]]></content>
       <categories>
         <category>其他</category>
       </categories>
