@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/10/23/Convention插件与约定支持/index.html">
 <meta property="og:site_name" content="学习随笔">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-23T15:53:31.185Z">
+<meta property="og:updated_time" content="2018-10-24T03:40:11.487Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Convention插件与约定支持">
 
@@ -389,10 +389,12 @@
         <hr>
 <a id="more"></a>
 <p>Struts2引入了Convention来支持零配置，不需要sturts.xml进行配置，而是根据约定来自动配置</p>
-<h2 id="Action的搜索和映射约定"><a href="#Action的搜索和映射约定" class="headerlink" title="Action的搜索和映射约定"></a>Action的搜索和映射约定</h2><p>Convention插件会自动搜索action,actions,sturts,struts2包下所有的java类Convention会把下两种Java当成Action处理1.所有实现com.opensymphony.xwork2.Action的Java类2.所有类名以Action结尾的Java类<br>映射Action的name时：</p>
+<h2 id="Action的搜索和映射约定"><a href="#Action的搜索和映射约定" class="headerlink" title="Action的搜索和映射约定"></a>Action的搜索和映射约定</h2><p>Convention插件会自动搜索action,actions,sturts,struts2包下所有的java类Convention会把下两种Java当成Action处理</p>
 <ol>
+<li>所有实现com.opensymphony.xwork2.Action的Java类</li>
+<li>所有类名以Action结尾的Java类<br>映射Action的name时：</li>
 <li>如果Action类名包含Action后缀,将后缀去掉，否则不做任何处理</li>
-<li>将Action类名的驼峰写法转换成中划线写法例如GetBooks映射为get-books<br>例如将org.crazyit.app.action.user;的LoginAction<br>将表单定义为&lt;s:form action=”/user/login”&gt;<h2 id="按约定映射Result"><a href="#按约定映射Result" class="headerlink" title="按约定映射Result"></a>按约定映射Result</h2>默认情况下Convention总会到web应用的WEB-INF/content路径下定位物理资源，定位资源的约定是actionName+resultcode+suffix当找不到对应的视图资源时，Convention会自动试图使用action+suffix作为视图资源例如org.crazyit.app.action.user.LoginAction返回success字符串时，优先考虑login-success.jsp如果找不到该文件，login.jsp也可作为对应视图资源<h2 id="Config-Browser插件"><a href="#Config-Browser插件" class="headerlink" title="Config Browser插件"></a>Config Browser插件</h2>复制strut2-config-browser-plugin-2.5.14.jar<br>复制到WEB-INF\lib下然后输入地址<a href="http://localhost:8080/web项目名/config-browser/actionNames.action" target="_blank" rel="noopener">http://localhost:8080/web项目名/config-browser/actionNames.action</a></li>
+<li>将Action类名的驼峰写法转换成中划线写法例如GetBooks映射为get-books<br>例如将org.crazyit.app.action.user;LoginAction<br>将表单定义为&lt;s:form action=”/user/login”&gt;<h2 id="按约定映射Result"><a href="#按约定映射Result" class="headerlink" title="按约定映射Result"></a>按约定映射Result</h2>默认情况下Convention总会到web应用的WEB-INF/content路径下定位物理资源，定位资源的约定是actionName+resultcode+suffix当找不到对应的视图资源时，Convention会自动试图使用action+suffix作为视图资源例如org.crazyit.app.action.user.LoginAction返回success字符串时，优先考虑login-success.jsp如果找不到该文件，login.jsp也可作为对应视图资源<h2 id="Config-Browser插件"><a href="#Config-Browser插件" class="headerlink" title="Config Browser插件"></a>Config Browser插件</h2>复制strut2-config-browser-plugin-2.5.14.jar<br>复制到WEB-INF\lib下然后输入地址<a href="http://localhost:8080/web项目名/config-browser/actionNames.action" target="_blank" rel="noopener">http://localhost:8080/web项目名/config-browser/actionNames.action</a></li>
 </ol>
 
       
