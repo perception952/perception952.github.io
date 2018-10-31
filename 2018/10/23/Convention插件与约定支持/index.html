@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/10/23/Convention插件与约定支持/index.html">
 <meta property="og:site_name" content="学习随笔">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-24T03:40:11.487Z">
+<meta property="og:updated_time" content="2018-10-27T04:14:05.217Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Convention插件与约定支持">
 
@@ -394,7 +394,10 @@
 <li>所有实现com.opensymphony.xwork2.Action的Java类</li>
 <li>所有类名以Action结尾的Java类<br>映射Action的name时：</li>
 <li>如果Action类名包含Action后缀,将后缀去掉，否则不做任何处理</li>
-<li>将Action类名的驼峰写法转换成中划线写法例如GetBooks映射为get-books<br>例如将org.crazyit.app.action.user;LoginAction<br>将表单定义为&lt;s:form action=”/user/login”&gt;<h2 id="按约定映射Result"><a href="#按约定映射Result" class="headerlink" title="按约定映射Result"></a>按约定映射Result</h2>默认情况下Convention总会到web应用的WEB-INF/content路径下定位物理资源，定位资源的约定是actionName+resultcode+suffix当找不到对应的视图资源时，Convention会自动试图使用action+suffix作为视图资源例如org.crazyit.app.action.user.LoginAction返回success字符串时，优先考虑login-success.jsp如果找不到该文件，login.jsp也可作为对应视图资源<h2 id="Config-Browser插件"><a href="#Config-Browser插件" class="headerlink" title="Config Browser插件"></a>Config Browser插件</h2>复制strut2-config-browser-plugin-2.5.14.jar<br>复制到WEB-INF\lib下然后输入地址<a href="http://localhost:8080/web项目名/config-browser/actionNames.action" target="_blank" rel="noopener">http://localhost:8080/web项目名/config-browser/actionNames.action</a></li>
+<li>将Action类名的驼峰写法转换成中划线写法例如GetBooks映射为get-books<br>例如将org.crazyit.app.action.user;LoginAction<br>将表单定义为&lt;s:form action=”/user/login”&gt;<h2 id="按约定映射Result"><a href="#按约定映射Result" class="headerlink" title="按约定映射Result"></a>按约定映射Result</h2>默认情况下Convention总会到web应用的WEB-INF/content路径下定位物理资源，定位资源的约定是actionName+resultcode+suffix当找不到对应的视图资源时，Convention会自动试图使用action+suffix作为视图资源例如org.crazyit.app.action.user.LoginAction返回success字符串时，优先考虑login-success.jsp如果找不到该文件，login.jsp也可作为对应视图资源<h2 id="Config-Browser插件"><a href="#Config-Browser插件" class="headerlink" title="Config Browser插件"></a>Config Browser插件</h2>复制strut2-config-browser-plugin-2.5.14.jar<br>复制到WEB-INF\lib下然后输入地址<a href="http://localhost:8080/web项目名/config-browser/actionNames.action" target="_blank" rel="noopener">http://localhost:8080/web项目名/config-browser/actionNames.action</a><h2 id="Action链的约定"><a href="#Action链的约定" class="headerlink" title="Action链的约定"></a>Action链的约定</h2>如果希望一个Action处理结束后不是进入视图界面而是进入另一个Action形成Action链只需要遵循下面三个约定</li>
+<li>第一个Action返回的逻辑视图字符串没有对应的视图资源</li>
+<li>第二个Action与第一个Action处于同一个包下</li>
+<li>第二个Action的映射URL为：firstactionName+resultcode<br>如FirstAction返回”second”第二个Action为FirstSecondAction</li>
 </ol>
 
       
@@ -453,6 +456,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/30/GitHub新手教程/" rel="prev" title="GitHub新手教程">
+                GitHub新手教程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -534,7 +541,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -580,7 +587,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Action的搜索和映射约定"><span class="nav-number">1.</span> <span class="nav-text">Action的搜索和映射约定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按约定映射Result"><span class="nav-number">2.</span> <span class="nav-text">按约定映射Result</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config-Browser插件"><span class="nav-number">3.</span> <span class="nav-text">Config Browser插件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Action的搜索和映射约定"><span class="nav-number">1.</span> <span class="nav-text">Action的搜索和映射约定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按约定映射Result"><span class="nav-number">2.</span> <span class="nav-text">按约定映射Result</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config-Browser插件"><span class="nav-number">3.</span> <span class="nav-text">Config Browser插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Action链的约定"><span class="nav-number">4.</span> <span class="nav-text">Action链的约定</span></a></li></ol></div>
             
 
           </div>
