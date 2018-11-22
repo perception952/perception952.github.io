@@ -392,30 +392,14 @@
 
       
         
-          
-            <hr>
-<p>HQL全称Hibernate Query Langeage接近于SQL语句</p>
-<h2 id="DML风格批量更新-删除"><a href="#DML风格批量更新-删除" class="headerlink" title="DML风格批量更新|删除"></a>DML风格批量更新|删除</h2><p>HQL支持批量update和delete,格式如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update | delete from? &lt;Classname&gt; [where where_conditions]</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>from子句可选，可以不写</li>
-<li>from子句只能有一个类名，可为该类名指定别名</li>
-<li>不能在批量HQL语句中使用连接，可以在where子句中使用子查询</li>
-<li>where子句可选<br>批量操作如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String hqlUpdate = &quot;update User u set name = :newName&quot;;</span><br><span class="line"></span><br><span class="line">int updateEntities = session.createQuery(hqlUpdate)</span><br><span class="line">.setParameter(&quot;newName&quot;,&quot;新名字&quot;);</span><br><span class="line">.executeUpdate();</span><br><span class="line">String hqlUpdate = &quot;delete User&quot;;</span><br><span class="line">int deleteEntities = session.createQuery(hqlUpdate)</span><br><span class="line">.executeUpdate();</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>这种语法类似于PreparedStatement的executeUpdate()语法，推荐使用占位符?N(问号加索引)相应的setParameter(“1”,value);也可用:+参数名字赋值如上</p>
-<h2 id="HQL查询"><a href="#HQL查询" class="headerlink" title="HQL查询"></a>HQL查询</h2><p>使用Session的createQuery(hql,Class)创建一个Query对象，Query对象使用setParameter()为HQL语句赋值，最后调用getResultList()返回查询结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Person&gt; p1 = session.createQuery(&quot;select distinct p from Person p join p.myEvents where title = :eventTitle&quot;,Person.class);</span><br><span class="line">.setParameter(&quot;eventTitle&quot;, &quot;普通的事&quot;)</span><br><span class="line">.getResultList();</span><br><span class="line">for(Person p : p1)</span><br><span class="line">	System.out.println(p.getName());</span><br></pre></td></tr></table></figure></p>
-<h2 id="关联和连接"><a href="#关联和连接" class="headerlink" title="关联和连接"></a>关联和连接</h2><p>分为显示连接和隐式连接，隐式连接转化为SQL99的交叉连接（笛卡尔积），显示连接转化为SQL99的inner join、left join、right join等，Hibernate只会对实体的普通组件属性和单个关联实体自动使用隐式连接，对于集合属性只能使用显式连接，显式连接可用with提供额外的连接条件<code>inner join p.myEvent event with p.id &gt; enevt.id</code></p>
-<h2 id="命名查询"><a href="#命名查询" class="headerlink" title="命名查询"></a>命名查询</h2><p>将HQL语句从java中提取出来，放到注解中配置，使用@NameQuary(name = “名称”,query = “HQL语句”)如果放在XML注解中<code>&lt;query name=&quot;&quot;&gt;
-HQL语句&lt;/query&gt;</code></p>
-<h2 id="动态条件查询"><a href="#动态条件查询" class="headerlink" title="动态条件查询"></a>动态条件查询</h2><p>Hibernate使用JPA的动态条件查询，由如下三个类完成</p>
-<ol>
-<li>CriteriaBuilder:工厂类，可创建Predicate(代表一个查询条件)，Expression(代表表达式)，CriteriaQuery,CriteriaUpdate,CriteriaDelete</li>
-<li>Root: 代表要查询的根实体</li>
-<li>Join: 代表一个关联<br>CriteriaQuery用于将一条select语句分开成不同的方法可以对不同的子句进行动态组合<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">final static EntityManagerFactory emf = Persistence</span><br><span class="line">.createEntityManagerFactory(&quot;query_pu&quot;);</span><br><span class="line">// 打开EntityManager和事务</span><br><span class="line">EntityManager em = emf.createEntityManager();</span><br><span class="line">em.getTransaction().begin();</span><br><span class="line">CriteriaBuilder builder = em.getCriteriaBuilder();</span><br><span class="line">// 创建CriteriaQuery，传入的类型参数代表该条件查询返回结果集里的元素类型</span><br><span class="line">CriteriaQuery&lt;Student&gt; criteria = builder.createQuery(Student.class);</span><br><span class="line">// 设置要查询的根实体类</span><br><span class="line">Root&lt;Student&gt; root = criteria.from(Student.class);</span><br><span class="line">// 下面语句不是必须的，条件查询默认会查询唯一的Root实体</span><br><span class="line">criteria.select(root);</span><br><span class="line">// 使用builder生成查询条件</span><br><span class="line">Predicate pred = builder.greaterThan(root.get(Student_.name), &quot;a&quot;); // ①</span><br><span class="line">// 使用CriteriaQuery的where()方法添加查询条件</span><br><span class="line">criteria.where(pred);</span><br><span class="line">List&lt;Student&gt; list = em.createQuer(criteria)</span><br><span class="line">.getResultList();</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-          
+          <hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/22/HQL/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -554,11 +538,14 @@ HQL语句&lt;/query&gt;</code></p>
 
       
         
-          
-            <hr>
-<p>Hibernate是javaEE的持久层解决方案，可以管理Java类到数据库的映射，还提供数据查询和获取数据 的方法，Hibernate完成了对象模型和基于SQL的关系模型的映射关系，使得开发者可以完全采用面向对象的方式来开发应用程序，所谓的持久层是指向储存器中储存数据的一组类和组件，是一个相对独立的逻辑层面。</p>
-
-          
+          <hr>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/22/第一个Hibernate/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
