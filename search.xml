@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[HQL]]></title>
+    <url>%2F2018%2F11%2F22%2FHQL%2F</url>
+    <content type="text"><![CDATA[HQL全称Hibernate Query Langeage接近于SQL语句 DML风格批量更新|删除HQL支持批量update和delete,格式如下1update | delete from? &lt;Classname&gt; [where where_conditions] from子句可选，可以不写 from子句只能有一个类名，可为该类名指定别名 不能在批量HQL语句中使用连接，可以在where子句中使用子查询 where子句可选批量操作如下12345678String hqlUpdate = &quot;update User u set name = :newName&quot;;int updateEntities = session.createQuery(hqlUpdate).setParameter(&quot;newName&quot;,&quot;新名字&quot;);.executeUpdate();String hqlUpdate = &quot;delete User&quot;;int deleteEntities = session.createQuery(hqlUpdate).executeUpdate(); 这种语法类似于PreparedStatement的executeUpdate()语法，推荐使用占位符?N(问号加索引)相应的setParameter(“1”,value);也可用:+参数名字赋值如上 HQL查询使用Session的createQuery(hql,Class)创建一个Query对象，Query对象使用setParameter()为HQL语句赋值，最后调用getResultList()返回查询结果12345List&lt;Person&gt; p1 = session.createQuery(&quot;select distinct p from Person p join p.myEvents where title = :eventTitle&quot;,Person.class);.setParameter(&quot;eventTitle&quot;, &quot;普通的事&quot;).getResultList();for(Person p : p1) System.out.println(p.getName()); 关联和连接分为显示连接和隐式连接，隐式连接转化为SQL99的交叉连接（笛卡尔积），显示连接转化为SQL99的inner join、left join、right join等，Hibernate只会对实体的普通组件属性和单个关联实体自动使用隐式连接，对于集合属性只能使用显式连接，显式连接可用with提供额外的连接条件inner join p.myEvent event with p.id &gt; enevt.id 命名查询将HQL语句从java中提取出来，放到注解中配置，使用@NameQuary(name = “名称”,query = “HQL语句”)如果放在XML注解中&lt;query name=&quot;&quot;&gt; HQL语句&lt;/query&gt; 动态条件查询Hibernate使用JPA的动态条件查询，由如下三个类完成 CriteriaBuilder:工厂类，可创建Predicate(代表一个查询条件)，Expression(代表表达式)，CriteriaQuery,CriteriaUpdate,CriteriaDelete Root: 代表要查询的根实体 Join: 代表一个关联CriteriaQuery用于将一条select语句分开成不同的方法可以对不同的子句进行动态组合123456789101112131415161718final static EntityManagerFactory emf = Persistence.createEntityManagerFactory(&quot;query_pu&quot;);// 打开EntityManager和事务EntityManager em = emf.createEntityManager();em.getTransaction().begin();CriteriaBuilder builder = em.getCriteriaBuilder();// 创建CriteriaQuery，传入的类型参数代表该条件查询返回结果集里的元素类型CriteriaQuery&lt;Student&gt; criteria = builder.createQuery(Student.class);// 设置要查询的根实体类Root&lt;Student&gt; root = criteria.from(Student.class);// 下面语句不是必须的，条件查询默认会查询唯一的Root实体criteria.select(root);// 使用builder生成查询条件Predicate pred = builder.greaterThan(root.get(Student_.name), &quot;a&quot;); // ①// 使用CriteriaQuery的where()方法添加查询条件criteria.where(pred);List&lt;Student&gt; list = em.createQuer(criteria).getResultList();]]></content>
+      <categories>
+        <category>Hibernate</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[第一个Hibernate]]></title>
+    <url>%2F2018%2F11%2F22%2F%E7%AC%AC%E4%B8%80%E4%B8%AAHibernate%2F</url>
+    <content type="text"><![CDATA[Hibernate是javaEE的持久层解决方案，可以管理Java类到数据库的映射，还提供数据查询和获取数据 的方法，Hibernate完成了对象模型和基于SQL的关系模型的映射关系，使得开发者可以完全采用面向对象的方式来开发应用程序，所谓的持久层是指向储存器中储存数据的一组类和组件，是一个相对独立的逻辑层面。]]></content>
+      <categories>
+        <category>Hibernate</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[GitHub新手教程]]></title>
     <url>%2F2018%2F10%2F30%2FGitHub%E6%96%B0%E6%89%8B%E6%95%99%E7%A8%8B%2F</url>
-    <content type="text"><![CDATA[先在GitHub上创建一个库,安装Git Bash软件，第一次使用需要在你的电脑获得一个密钥，在Git Bash中输入1$ ssh-keygen-t rsa-C &quot;your_email@youremail.com&quot; 然后在/Users/pc下找到.ssh下的id_rsa，复制其中的密钥放到你GitHub库中，然后回到Git Bash上输入123$ ssh -T git@github.com$ git config --global user.name &quot;your name&quot;$ git config --global user.email &quot;your_email@youremail.com&quot; 接下来将库克隆到本地电脑1git clone https://github.com/HananiJia/test.git git clone后面的网址就是创建库成功之后的网址，生成的这个文件夹有一个.git文件把你想要上传的文件放到这个文件夹下，然后定位到这个文件夹下，然后输入123git add test.txtgit commit -m &quot;备注&quot;git push origin master master可以替换为任何分支]]></content>
+    <content type="text"><![CDATA[先在GitHub上创建一个库,安装Git Bash软件，第一次使用需要在你的电脑获得一个密钥，在Git Bash中输入1$ ssh-keygen-t rsa-C &quot;your_email@youremail.com&quot; 然后在/Users/pc下找到.ssh下的id_rsa，复制其中的密钥放到你GitHub库中：点击Github项目右上角的下拉菜单setting找到SSH and GPG keys把密钥放上，然后回到Git Bash上输入123$ ssh -T git@github.com$ git config --global user.name &quot;your name&quot;$ git config --global user.email &quot;your_email@youremail.com&quot; 接下来将库克隆到本地电脑1git clone https://github.com/HananiJia/test.git git clone后面的网址就是创建库成功之后的网址，生成的这个文件夹有一个.git文件把你想要上传的文件放到这个文件夹下，然后定位到这个文件夹下，然后输入123git add test.txtgit commit -m &quot;备注&quot;git push origin master master可以替换为任何分支]]></content>
       <categories>
         <category>其他</category>
       </categories>

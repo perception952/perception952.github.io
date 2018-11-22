@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/10/30/GitHub新手教程/index.html">
 <meta property="og:site_name" content="学习随笔">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-30T15:15:21.279Z">
+<meta property="og:updated_time" content="2018-11-22T05:57:03.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub新手教程">
 
@@ -389,7 +389,7 @@
         <hr>
 <a id="more"></a>
 <p>先在GitHub上创建一个库,安装Git Bash软件，第一次使用需要在你的电脑获得一个密钥，在Git Bash中输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen-t rsa-C &quot;your_email@youremail.com&quot;</span><br></pre></td></tr></table></figure></p>
-<p>然后在/Users/pc下找到.ssh下的id_rsa，复制其中的密钥放到你GitHub库中，然后回到Git Bash上输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br><span class="line">$ git config --global user.name &quot;your name&quot;</span><br><span class="line">$ git config --global user.email &quot;your_email@youremail.com&quot;</span><br></pre></td></tr></table></figure></p>
+<p>然后在/Users/pc下找到.ssh下的id_rsa，复制其中的密钥放到你GitHub库中：点击Github项目右上角的下拉菜单setting找到SSH and GPG keys把密钥放上，然后回到Git Bash上输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br><span class="line">$ git config --global user.name &quot;your name&quot;</span><br><span class="line">$ git config --global user.email &quot;your_email@youremail.com&quot;</span><br></pre></td></tr></table></figure></p>
 <p>接下来将库克隆到本地电脑<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/HananiJia/test.git</span><br></pre></td></tr></table></figure></p>
 <p>git clone后面的网址就是创建库成功之后的网址，生成的这个文件夹有一个.git文件把你想要上传的文件放到这个文件夹下，然后定位到这个文件夹下，然后输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add test.txt</span><br><span class="line">git commit -m &quot;备注&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure></p>
 <p>master可以替换为任何分支</p>
@@ -450,6 +450,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/22/第一个Hibernate/" rel="prev" title="第一个Hibernate">
+                第一个Hibernate <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -522,7 +526,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -533,7 +537,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
