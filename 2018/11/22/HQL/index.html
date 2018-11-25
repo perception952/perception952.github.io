@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/11/22/HQL/index.html">
 <meta property="og:site_name" content="学习随笔">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-24T07:37:57.266Z">
+<meta property="og:updated_time" content="2018-11-25T07:44:21.261Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HQL">
 
@@ -388,20 +388,20 @@
       
         <hr>
 <a id="more"></a>
-<p>HQL全称Hibernate Query Langeage接近于SQL语句</p>
+<p>HQL全称Hibernate Query Langeage接近于SQL语句，SQL操作对象是数据表，HQL操作对象是类，属性</p>
+<h2 id="HQL查询"><a href="#HQL查询" class="headerlink" title="HQL查询"></a>HQL查询</h2><p>使用Session的createQuery(hql,Class)创建一个Query对象，Query对象使用setParameter()为HQL语句赋值，最后调用getResultList()返回查询结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Person&gt; p1 = session.createQuery(&quot;select distinct p from Person p join p.myEvents where title = :eventTitle&quot;,Person.class);</span><br><span class="line">.setParameter(&quot;eventTitle&quot;, &quot;普通的事&quot;)</span><br><span class="line">.getResultList();</span><br><span class="line">for(Person p : p1)</span><br><span class="line">	System.out.println(p.getName());</span><br></pre></td></tr></table></figure></p>
+<p>这种语法类似于PreparedStatement的executeUpdate()语法，推荐使用占位符?N(问号加索引)相应的setParameter(“1”,value);也可用‘:’+参数名字赋值如上</p>
+<h2 id="关联和连接"><a href="#关联和连接" class="headerlink" title="关联和连接"></a>关联和连接</h2><p>分为显示连接和隐式连接，隐式连接转化为SQL的交叉连接（笛卡尔积），显示连接转化为SQL的inner join、left join、right join等，Hibernate只会对实体的普通组件属性和单个关联实体自动使用隐式连接，对于集合属性只能使用显式连接，显式连接可用with提供额外的连接条件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">form Person p inner join p.myEvent event with p.id &gt; enevt.id</span><br></pre></td></tr></table></figure></p>
+<p>隐式查询<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">form Person p where p.myEvent.title&gt;:title</span><br><span class="line">将转换成下列SQL语句</span><br><span class="line">select ... from person_inf person0_ cross</span><br><span class="line">join event_inf myevent1_ where person0_event_id=myevent1_.event_id and myevent1.title&gt;?</span><br></pre></td></tr></table></figure></p>
+<h2 id="命名查询"><a href="#命名查询" class="headerlink" title="命名查询"></a>命名查询</h2><p>将HQL语句从java中提取出来，放到注解中配置，使用@NameQuary(name = “名称”, query = “HQL语句”)如果放在XML注解中<code>&lt;query name=&quot;&quot;&gt;
+HQL语句&lt;/query&gt;</code></p>
 <h2 id="DML风格批量更新-删除"><a href="#DML风格批量更新-删除" class="headerlink" title="DML风格批量更新|删除"></a>DML风格批量更新|删除</h2><p>HQL支持批量update和delete,格式如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update | delete from? &lt;Classname&gt; [where where_conditions]</span><br></pre></td></tr></table></figure></p>
 <ol>
 <li>from子句可选，可以不写</li>
 <li>from子句只能有一个类名，可为该类名指定别名</li>
 <li>不能在批量HQL语句中使用连接，可以在where子句中使用子查询</li>
-<li>where子句可选<br>批量操作如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String hqlUpdate = &quot;update User u set name = :newName&quot;;</span><br><span class="line">int updateEntities = session.createQuery(hqlUpdate)</span><br><span class="line">.setParameter(&quot;newName&quot;,&quot;新名字&quot;);</span><br><span class="line">.executeUpdate();</span><br><span class="line">String hqlUpdate = &quot;delete User&quot;;</span><br><span class="line">int deleteEntities = session.createQuery(hqlUpdate)</span><br><span class="line">.executeUpdate();</span><br></pre></td></tr></table></figure>
-</li>
+<li>where子句可选<br>批量操作如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//更新</span><br><span class="line">String hqlUpdate = &quot;update User u set name = :newName&quot;;</span><br><span class="line">int updateEntities = session.createQuery(hqlUpdate)</span><br><span class="line">.setParameter(&quot;newName&quot;,&quot;新名字&quot;);</span><br><span class="line">.executeUpdate();</span><br><span class="line">//删除</span><br><span class="line">String hqlUpdate = &quot;delete User&quot;;</span><br><span class="line">int deleteEntities = session.createQuery(hqlUpdate)</span><br><span class="line">.executeUpdate();</span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>这种语法类似于PreparedStatement的executeUpdate()语法，推荐使用占位符?N(问号加索引)相应的setParameter(“1”,value);也可用‘:’+参数名字赋值如上</p>
-<h2 id="HQL查询"><a href="#HQL查询" class="headerlink" title="HQL查询"></a>HQL查询</h2><p>使用Session的createQuery(hql,Class)创建一个Query对象，Query对象使用setParameter()为HQL语句赋值，最后调用getResultList()返回查询结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Person&gt; p1 = session.createQuery(&quot;select distinct p from Person p join p.myEvents where title = :eventTitle&quot;,Person.class);</span><br><span class="line">.setParameter(&quot;eventTitle&quot;, &quot;普通的事&quot;)</span><br><span class="line">.getResultList();</span><br><span class="line">for(Person p : p1)</span><br><span class="line">	System.out.println(p.getName());</span><br></pre></td></tr></table></figure></p>
-<h2 id="关联和连接"><a href="#关联和连接" class="headerlink" title="关联和连接"></a>关联和连接</h2><p>分为显示连接和隐式连接，隐式连接转化为SQL99的交叉连接（笛卡尔积），显示连接转化为SQL99的inner join、left join、right join等，Hibernate只会对实体的普通组件属性和单个关联实体自动使用隐式连接，对于集合属性只能使用显式连接，显式连接可用with提供额外的连接条件<br><code>form Person p inner join p.myEvent event with p.id &gt; enevt.id</code></p>
-<h2 id="命名查询"><a href="#命名查询" class="headerlink" title="命名查询"></a>命名查询</h2><p>将HQL语句从java中提取出来，放到注解中配置，使用@NameQuary(name = “名称”,query = “HQL语句”)如果放在XML注解中<code>&lt;query name=&quot;&quot;&gt;
-HQL语句&lt;/query&gt;</code></p>
 
       
     </div>
@@ -590,7 +590,7 @@ HQL语句&lt;/query&gt;</code></p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DML风格批量更新-删除"><span class="nav-number">1.</span> <span class="nav-text">DML风格批量更新|删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HQL查询"><span class="nav-number">2.</span> <span class="nav-text">HQL查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联和连接"><span class="nav-number">3.</span> <span class="nav-text">关联和连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名查询"><span class="nav-number">4.</span> <span class="nav-text">命名查询</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HQL查询"><span class="nav-number">1.</span> <span class="nav-text">HQL查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联和连接"><span class="nav-number">2.</span> <span class="nav-text">关联和连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名查询"><span class="nav-number">3.</span> <span class="nav-text">命名查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DML风格批量更新-删除"><span class="nav-number">4.</span> <span class="nav-text">DML风格批量更新|删除</span></a></li></ol></div>
             
 
           </div>
