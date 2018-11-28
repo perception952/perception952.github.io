@@ -83,16 +83,14 @@
 
 
 
-<meta name="description" content="Share some experience in learning">
-<meta property="og:type" content="website">
-<meta property="og:title" content="学习随笔">
-<meta property="og:url" content="http://yoursite.com/categories/Spring/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java线程">
+<meta property="og:url" content="http://yoursite.com/2018/11/28/java线程/index.html">
 <meta property="og:site_name" content="学习随笔">
-<meta property="og:description" content="Share some experience in learning">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-28T09:43:50.847Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习随笔">
-<meta name="twitter:description" content="Share some experience in learning">
+<meta name="twitter:title" content="java线程">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/Spring/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/28/java线程/"/>
 
 
 
 
 
-  <title>分类: Spring | 学习随笔</title>
+  <title>java线程 | 学习随笔</title>
   
 
 
@@ -147,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -285,55 +283,189 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Spring<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/28/java线程/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李晨阳">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习随笔">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/09/20/基于XML-Schema的简化配置/" itemprop="url">
-              
-                <span itemprop="name">基于XML Schema的简化配置</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">java线程</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-20T09:56:37+08:00"
-              content="2018-09-20" >
-          09-20
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-28T16:16:33+08:00">
+                2018-11-28
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<p>在java平台创建一个线程就是创建一个Thread类，每个线程都有要执行的任务，线程的任务处理逻辑可以在Thread类的run方法中直接实现或者通过该方法进行调用，run方法相当于线程的任务处理逻辑的入口方法，由java虚拟机运行线程时直接调用，而不是由代码进行调用，运行一个线程就是让java虚拟机执行该线程的run方法，为此我们首先要启动线程，Thread的start方法的作用是启动相应的线程，启动一个线程的实质是请求Java虚拟机运行相应的线程，而这个线程具体何时能够运行是由线程调度器决定的，start方法并不意味着相应线程已经开始运行了。<br>    Thread类的两个常用构造器是Thread()和Thread(Runnable target)<br>相应的Java中创建线程的方式有两种，一种是定义Thread类的子类，子类中覆盖run方法，另一种是创建一个java.lang.Runnable接口的实例，以该Runnable接口实例作为构造器的参数直接创建一个Thread类的实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">定义Thread类子类</span><br><span class="line">public class WelcomeThread extends Thread&#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		System.out.println(&quot;2.Welcome! I&apos;m &quot; + Thread.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	public static void main(String args[])&#123;</span><br><span class="line">		Thread welcomeThread = new WelcomeThread();</span><br><span class="line">		welcomeThread.start();</span><br><span class="line">		System.out.println(&quot;1.Welcome! I&apos;m &quot; + Thread.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line">Runnable接口</span><br><span class="line">public class WelcomeTask implements Runnable&#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		System.out.println(&quot;2.Welcome! I&apos;m &quot; + Thread.currentThread().getName());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	public static void main(String args[])&#123;</span><br><span class="line">		Thread welcomeThread = new Thread(new WelcomeTask());</span><br><span class="line">		welcomeThread.start();</span><br><span class="line">		System.out.println(&quot;1.Welcome! I&apos;m &quot; + Thread.currentThread().getName());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="李晨阳 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/24/JPA动态查询/" rel="next" title="JPA动态查询">
+                <i class="fa fa-chevron-left"></i> JPA动态查询
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -341,6 +473,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -571,6 +707,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
