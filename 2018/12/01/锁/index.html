@@ -85,14 +85,14 @@
 
 <meta name="description" content="线程安全问题的产生是因为多个线程并发访问共享数据，于是很容易想到一种保障线程安全的方法，将多个线程对共享数据的并发访问转换为串行访问，锁就是利用这种思路以保障线程安全的同步机制，一个锁一次只能被一个线程持有，也称排他锁，按照java虚拟机对锁的实现方式的划分，包括内部锁和显示锁 可重入性：描述了这样一个问题一个线程在其持有一个锁的时候能否再次申请该锁，如果还能申请成功那么我们就称该锁是可重入的1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="锁">
+<meta property="og:title" content="线程锁">
 <meta property="og:url" content="http://yoursite.com/2018/12/01/锁/index.html">
 <meta property="og:site_name" content="学习随笔">
 <meta property="og:description" content="线程安全问题的产生是因为多个线程并发访问共享数据，于是很容易想到一种保障线程安全的方法，将多个线程对共享数据的并发访问转换为串行访问，锁就是利用这种思路以保障线程安全的同步机制，一个锁一次只能被一个线程持有，也称排他锁，按照java虚拟机对锁的实现方式的划分，包括内部锁和显示锁 可重入性：描述了这样一个问题一个线程在其持有一个锁的时候能否再次申请该锁，如果还能申请成功那么我们就称该锁是可重入的1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-01T15:07:39.711Z">
+<meta property="og:updated_time" content="2018-12-01T15:10:58.597Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="锁">
+<meta name="twitter:title" content="线程锁">
 <meta name="twitter:description" content="线程安全问题的产生是因为多个线程并发访问共享数据，于是很容易想到一种保障线程安全的方法，将多个线程对共享数据的并发访问转换为串行访问，锁就是利用这种思路以保障线程安全的同步机制，一个锁一次只能被一个线程持有，也称排他锁，按照java虚拟机对锁的实现方式的划分，包括内部锁和显示锁 可重入性：描述了这样一个问题一个线程在其持有一个锁的时候能否再次申请该锁，如果还能申请成功那么我们就称该锁是可重入的1">
 
 
@@ -129,7 +129,7 @@
 
 
 
-  <title>锁 | 学习随笔</title>
+  <title>线程锁 | 学习随笔</title>
   
 
 
@@ -317,7 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">锁</h1>
+          <h1 class="post-title" itemprop="name headline">线程锁</h1>
         
 
         <div class="post-meta">
@@ -368,7 +368,7 @@
 
       
         <hr>
-<p>线程安全问题的产生是因为多个线程并发访问共享数据，于是很容易想到一种保障线程安全的方法，将多个线程对共享数据的并发访问转换为串行访问，锁就是利用这种思路以保障线程安全的同步机制，一个锁一次只能被一个线程持有，也称排他锁，按照java虚拟机对锁的实现方式的划分，包括内部锁和显示锁</p>
+<p><--more--><br>线程安全问题的产生是因为多个线程并发访问共享数据，于是很容易想到一种保障线程安全的方法，将多个线程对共享数据的并发访问转换为串行访问，锁就是利用这种思路以保障线程安全的同步机制，一个锁一次只能被一个线程持有，也称排他锁，按照java虚拟机对锁的实现方式的划分，包括内部锁和显示锁</--more--></p>
 <h1 id="可重入性："><a href="#可重入性：" class="headerlink" title="可重入性："></a>可重入性：</h1><p>描述了这样一个问题一个线程在其持有一个锁的时候能否再次申请该锁，如果还能申请成功那么我们就称该锁是可重入的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Void methodA()&#123;</span><br><span class="line">	acquireLock(lock); //申请锁</span><br><span class="line">	methodB();</span><br><span class="line">	releaseLock(lock);//释放锁</span><br><span class="line">&#125;</span><br><span class="line">void method()&#123;</span><br><span class="line">acquireLock(lock);//申请锁</span><br><span class="line">	releaseLock(lock);//释放锁</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>方法A使用了锁lock,该锁引导的临界区（访问公共资源的程序段）又调用了另外一个方法B,B中也申请了lock，那么问题就产生了，A持有锁的时候调用了B，B又去申请锁，而锁此时正被当前线程持有未被释放，那么B能否申请成功呢，可重入性就是描述了这样一个问题，可重入锁包含一个计数属性，申请锁时判断当前线程是否是已获得锁的线程，是计数+1，该线程获得了N次锁，则需要释放N次才能成功<br>锁泄露：一个线程获得某个锁后由于程序错误使该锁一直无法被释放，而导致其他线程一直无法获得该锁的现象，其危害性在于可重入锁的隐蔽性，可重入锁获得该线程后不释放也不阻碍其后续再次获得该锁（可重入锁本身保证的），导致其他线程永远无法获得锁</p>
 <h1 id="内部锁："><a href="#内部锁：" class="headerlink" title="内部锁："></a>内部锁：</h1><p>synchronized关键字（可重入）<br>Java平台的任何一个对象都有唯一一个与之相连的锁，这种锁被称为内部锁，通过synchronized关键字实现，可以用来修饰方法以及代码块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Public  synchronized add()&#123;</span><br><span class="line">	Sequence ++;</span><br><span class="line">&#125;</span><br><span class="line">Synchronized(锁句柄)&#123;</span><br><span class="line">	临界区</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
