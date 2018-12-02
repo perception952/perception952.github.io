@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/10/23/Convention插件与约定支持/index.html">
 <meta property="og:site_name" content="学习随笔">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-27T04:14:05.217Z">
+<meta property="og:updated_time" content="2018-12-02T06:37:56.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Convention插件与约定支持">
 
@@ -390,7 +390,7 @@
 <a id="more"></a>
 <p>Struts2引入了Convention来支持零配置，不需要sturts.xml进行配置，而是根据约定来自动配置</p>
 <h2 id="Action的搜索和映射约定"><a href="#Action的搜索和映射约定" class="headerlink" title="Action的搜索和映射约定"></a>Action的搜索和映射约定</h2><p>Convention插件会自动搜索action,actions,sturts,struts2包下所有的java类Convention会把下两种Java当成Action处理</p>
-<ol>
+<ul>
 <li>所有实现com.opensymphony.xwork2.Action的Java类</li>
 <li>所有类名以Action结尾的Java类<br>映射Action的name时：</li>
 <li>如果Action类名包含Action后缀,将后缀去掉，否则不做任何处理</li>
@@ -398,7 +398,7 @@
 <li>第一个Action返回的逻辑视图字符串没有对应的视图资源</li>
 <li>第二个Action与第一个Action处于同一个包下</li>
 <li>第二个Action的映射URL为：firstactionName+resultcode<br>如FirstAction返回”second”第二个Action为FirstSecondAction</li>
-</ol>
+</ul>
 
       
     </div>
