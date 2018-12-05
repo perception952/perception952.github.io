@@ -84,13 +84,13 @@
 
 
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一个Hibernate">
-<meta property="og:url" content="http://yoursite.com/2018/11/22/第一个Hibernate/index.html">
+<meta property="og:title" content="多线程下的单例模式">
+<meta property="og:url" content="http://yoursite.com/2018/12/05/多线程下的单例模式/index.html">
 <meta property="og:site_name" content="学习随笔">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-04T00:14:44.849Z">
+<meta property="og:updated_time" content="2018-12-05T07:04:36.223Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一个Hibernate">
+<meta name="twitter:title" content="多线程下的单例模式">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/22/第一个Hibernate/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/05/多线程下的单例模式/"/>
 
 
 
 
 
-  <title>第一个Hibernate | 学习随笔</title>
+  <title>多线程下的单例模式 | 学习随笔</title>
   
 
 
@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/22/第一个Hibernate/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/05/多线程下的单例模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李晨阳">
@@ -314,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第一个Hibernate</h1>
+          <h1 class="post-title" itemprop="name headline">多线程下的单例模式</h1>
         
 
         <div class="post-meta">
@@ -326,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T14:58:13+08:00">
-                2018-11-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T10:56:28+08:00">
+                2018-12-05
               </time>
             
 
@@ -349,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hibernate/" itemprop="url" rel="index">
-                    <span itemprop="name">Hibernate</span>
+                  <a href="/categories/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
                   </a>
                 </span>
 
@@ -388,25 +388,22 @@
       
         <hr>
 <a id="more"></a>
-<p>Hibernate是javaEE的持久层解决方案，可以管理Java类到数据库的映射，还提供数据查询和获取数据 的方法，Hibernate完成了对象模型和基于SQL的关系模型的映射关系，使得开发者可以完全采用面向对象的方式来开发应用程序，所谓的持久层是指向储存器中储存数据的一组类和组件，是一个相对独立的逻辑层面。</p>
-<h2 id="持久化对象-PO-News类"><a href="#持久化对象-PO-News类" class="headerlink" title="持久化对象(PO)News类"></a>持久化对象(PO)News类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">@Table(name=&quot;news_inf&quot;)</span><br><span class="line">public class News</span><br><span class="line">&#123;</span><br><span class="line">	// 消息类的标识属性</span><br><span class="line">	@Id</span><br><span class="line">	@GeneratedValue(strategy=GenerationType.IDENTITY)</span><br><span class="line">	private Integer id;</span><br><span class="line">	// 消息标题</span><br><span class="line">	private String title;</span><br><span class="line">	// 消息内容</span><br><span class="line">	private String content;</span><br><span class="line"></span><br><span class="line">	// id的setter和getter方法</span><br><span class="line">	public void setId(Integer id)</span><br><span class="line">	&#123;</span><br><span class="line">		this.id = id;</span><br><span class="line">	&#125;</span><br><span class="line">	public Integer getId()</span><br><span class="line">	&#123;</span><br><span class="line">		return this.id;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// title的setter和getter方法</span><br><span class="line">	public void setTitle(String title)</span><br><span class="line">	&#123;</span><br><span class="line">		this.title = title;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getTitle()</span><br><span class="line">	&#123;</span><br><span class="line">		return this.title;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// content的setter和getter方法</span><br><span class="line">	public void setContent(String content)</span><br><span class="line">	&#123;</span><br><span class="line">		this.content = content;</span><br><span class="line">	&#125;</span><br><span class="line">	public String getContent()</span><br><span class="line">	&#123;</span><br><span class="line">		return this.content;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>News本身是一个普通的JavaBean,为他加上持久化注解就变成了持久化对象PO=POJO（普通传统Java对象）+持久化注解</p>
-<ul>
-<li>@Entity注解声明该类是个Hibernate持久化类</li>
-<li>@Table注解指定该类映射的数据表</li>
-<li>@Id指定该类的标识属性</li>
-<li>@GeneratedValue(strategy=GenerationType.IDENTITY)用于主键的生成策略<br>Hibernate的XML配置文件  </li>
-</ul>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;GBK&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE hibernate-configuration PUBLIC</span><br><span class="line">	&quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;</span><br><span class="line">	&quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;</span><br><span class="line">&lt;hibernate-configuration&gt;</span><br><span class="line">	&lt;session-factory&gt;</span><br><span class="line">		&lt;!-- 指定连接数据库所用的驱动 --&gt;</span><br><span class="line">		&lt;property name=&quot;connection.driver_class&quot;&gt;com.mysql.jdbc.Driver&lt;/property&gt;</span><br><span class="line">		&lt;!-- 指定连接数据库的url，其中hibernate是本应用连接的数据库名 --&gt;</span><br><span class="line">		&lt;property name=&quot;connection.url&quot;&gt;jdbc:mysql://localhost/hibernate?useSSL=true&lt;/property&gt;</span><br><span class="line">		&lt;!-- 指定连接数据库的用户名 --&gt;</span><br><span class="line">		&lt;property name=&quot;connection.username&quot;&gt;root&lt;/property&gt;</span><br><span class="line">		&lt;!-- 指定连接数据库的密码 --&gt;</span><br><span class="line">		&lt;property name=&quot;connection.password&quot;&gt;32147&lt;/property&gt;</span><br><span class="line">		&lt;!-- 指定连接池里最大连接数 --&gt;</span><br><span class="line">		&lt;property name=&quot;hibernate.c3p0.max_size&quot;&gt;20&lt;/property&gt;</span><br><span class="line">		&lt;!-- 指定连接池里最小连接数 --&gt;</span><br><span class="line">		&lt;property name=&quot;hibernate.c3p0.min_size&quot;&gt;1&lt;/property&gt;</span><br><span class="line">		&lt;!-- 指定连接池里连接的超时时长 --&gt;</span><br><span class="line">		&lt;property name=&quot;hibernate.c3p0.timeout&quot;&gt;5000&lt;/property&gt;</span><br><span class="line">		&lt;!-- 指定连接池里最大缓存多少个Statement对象 --&gt;</span><br><span class="line">		&lt;property name=&quot;hibernate.c3p0.max_statements&quot;&gt;100&lt;/property&gt;</span><br><span class="line">		&lt;property name=&quot;hibernate.c3p0.idle_test_period&quot;&gt;3000&lt;/property&gt;</span><br><span class="line">		&lt;property name=&quot;hibernate.c3p0.acquire_increment&quot;&gt;2&lt;/property&gt;</span><br><span class="line">		&lt;property name=&quot;hibernate.c3p0.validate&quot;&gt;true&lt;/property&gt;</span><br><span class="line">		&lt;!-- 指定数据库方言 --&gt;</span><br><span class="line">		&lt;property name=&quot;dialect&quot;&gt;org.hibernate.dialect.MySQL5InnoDBDialect&lt;/property&gt;</span><br><span class="line">		&lt;!-- 根据需要自动创建数据表 --&gt;</span><br><span class="line">		&lt;property name=&quot;hbm2ddl.auto&quot;&gt;update&lt;/property&gt;&lt;!--①--&gt;</span><br><span class="line">		&lt;!-- 显示Hibernate持久化操作所生成的SQL --&gt;</span><br><span class="line">		&lt;property name=&quot;show_sql&quot;&gt;true&lt;/property&gt;</span><br><span class="line">		&lt;!-- 将SQL脚本进行格式化后再输出 --&gt;</span><br><span class="line">		&lt;property name=&quot;hibernate.format_sql&quot;&gt;true&lt;/property&gt;</span><br><span class="line">		&lt;!-- 罗列所有持久化类的类名 --&gt;</span><br><span class="line">		&lt;mapping class=&quot;org.crazyit.app.domain.News&quot;/&gt;</span><br><span class="line">	&lt;/session-factory&gt;</span><br><span class="line">&lt;/hibernate-configuration&gt;</span><br></pre></td></tr></table></figure>
-<p>&lt;!DOCTYPE&gt;一个文档类型标记，它的目的是要告诉通用标记语言解析器，他应该使用什么样的文档类型定义（DTD）来解析文档，Hibernate配置文件的默认文件名为hibernate.cfg.xml，当程序调用Configuration对象的configure()方法时会自动加载该文件，Hibernate推荐使用C3P0数据源，数据源会负责维持一个数据连接池，当程序创建数据源实例时，系统会一次性创建多个数据库连接，并保存在连接池中</p>
-<h2 id="完成消息插入的代码"><a href="#完成消息插入的代码" class="headerlink" title="完成消息插入的代码"></a>完成消息插入的代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public class NewsManager</span><br><span class="line">&#123;</span><br><span class="line">    public static void main(String[] args)</span><br><span class="line">        throws Exception</span><br><span class="line">    &#123;</span><br><span class="line">        // 实例化Configuration</span><br><span class="line">        Configuration conf = new Configuration()</span><br><span class="line">            // 不带参数的configure()方法默认加载hibernate.cfg.xml文件</span><br><span class="line">            // 如果传入abc.xml作为参数，则不再加载hibernate.cfg.xml，改为加载abc.xml</span><br><span class="line">            .configure();</span><br><span class="line">        // 以Configuration实例创建SessionFactory实例</span><br><span class="line">        SessionFactory sf = conf.buildSessionFactory();</span><br><span class="line">        // 创建Session</span><br><span class="line">        Session sess = sf.openSession();</span><br><span class="line">        // 开始事务</span><br><span class="line">        Transaction tx = sess.beginTransaction();</span><br><span class="line">        // 创建消息对象</span><br><span class="line">        News n = new News();</span><br><span class="line">        // 设置消息标题和消息内容</span><br><span class="line">        n.setTitle(&quot;疯狂Java联盟成立了&quot;);</span><br><span class="line">        n.setContent(&quot;疯狂Java联盟成立了，&quot;</span><br><span class="line">            + &quot;网站地址http://www.crazyit.org&quot;);</span><br><span class="line">        // 保存消息</span><br><span class="line">        sess.save(n);</span><br><span class="line">        // 提交事务</span><br><span class="line">        tx.commit();</span><br><span class="line">        // 关闭Session</span><br><span class="line">        sess.close();</span><br><span class="line">        sf.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Configuration负责加载Hibernate配置文件</li>
-<li>SessionFactory是数据库编译后的内存镜像，通常一个应用对应一个SessionFactory，</li>
-<li>Session是应用程序和持久储存层之间交互操作和一个单线程对象，所有的持久化对象必须在session管理下才可以进行持久化操作，生存期很短，它底层封装了JDBC连接，他也是Transaction的工厂，Session对象持有必选的一级缓存，在显式执行flush之前所有持久化操作的数据都在缓存中的session对象处</li>
-<li>Transaction(事务)代表一次原子操作，它具有数据库事务的概念，所有的持久化操作都应该在事务管理下进行</li>
-</ul>
+<p>单例模式所要实现的目标非常简单，保持一个类有且仅有一个实例，严格来说所谓的“一个类有且仅有一个实例”隐含着一个前提–这个类是一个Java虚拟机实例中的一个Class Loader所加载的类。这是考虑到了Java虚拟机的Class Loader机制：同一个类可以被多个Class Loader加载，这些Class Loader各自创建这个类的实例，因此如果有多个Class Loader加载同一个类，那么所谓的单例就无法满足，被创建的实例数就等于加载这个类的Class Loader数<br>如果单例初始值是null，还未构建，则构建单例对象并返回，这是懒汉模式，如果单例对象一开始就被主动构建不需要判空操作，这是饿汉模式，出于性能的考虑，不少单例模式的实现会采用延迟加载，仅在需要用到相应实例的时候才创建实例，</p>
+<h1 id="单线程版单例"><a href="#单线程版单例" class="headerlink" title="单线程版单例"></a>单线程版单例</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">	private static Singleton instance = null;</span><br><span class="line">	</span><br><span class="line">	private Singleton() &#123;</span><br><span class="line">		//什么也不做</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static Singleton getSingleton() &#123;</span><br><span class="line">		if(null  == instance) &#123;</span><br><span class="line">			instance = new Singleton();</span><br><span class="line">		&#125;</span><br><span class="line">		return instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="加锁的版单例"><a href="#加锁的版单例" class="headerlink" title="加锁的版单例"></a>加锁的版单例</h1><h2 id="最简单加锁"><a href="#最简单加锁" class="headerlink" title="最简单加锁"></a>最简单加锁</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public static Singleton getSingleton() &#123;</span><br><span class="line">	synchronized (Singleton.class) &#123;</span><br><span class="line">		if(null  == instance) &#123;</span><br><span class="line">			instance = new Singleton();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这意味着每次执行线程都要申请锁，为避免锁开销，设计出双重检查锁定</p>
+<h2 id="双重检查锁定"><a href="#双重检查锁定" class="headerlink" title="双重检查锁定"></a>双重检查锁定</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static Singleton getSingleton() &#123;</span><br><span class="line">	if(null == instance) &#123;					//1</span><br><span class="line">		synchronized (Singleton.class) &#123;</span><br><span class="line">			if(null  == instance) &#123;			//2</span><br><span class="line">				instance = new Singleton(); //3</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看似既避免了锁开销又保障了线程安全，实则暗藏危机，因为还有重排序的因素，操作3可划分成3个子操作</p>
+<ol>
+<li>objRef = allocate(Singleton.class)//分配对象需要的储存空间</li>
+<li>incokeConstructor(objRef)//初始化objRef引用的对象</li>
+<li>instance = objRef;//将对象引用写入共享变量<br>重排序后可能顺序为132,即变量instance的值不是null,但该变量引用的对象中某些实例变量的值仍是默认值而不是构造函数里的初始值，也就是线程在执行操作1时发现instance不是null，但是该变量未初始化完毕，这就可能导致程序出错！<br>只要把instace参数用volatile修饰即可<h2 id="基于静态内部类"><a href="#基于静态内部类" class="headerlink" title="基于静态内部类"></a>基于静态内部类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">	private static Singleton instance = null;</span><br><span class="line">	</span><br><span class="line">	private Singleton() &#123;</span><br><span class="line">		//什么也不做</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private static class InstanceHolder &#123;</span><br><span class="line">		final static Singleton INSTANCE = new Singleton();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static Singleton getSingleton() &#123;</span><br><span class="line"></span><br><span class="line">		return InstanceHolder.INSTANCE;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>从外部无法访问静态内部类，只有调用getInstace方法才能得到单例对象，INSTANCE对象初始化时机并不是类被加载的时候，而是调用getInstance时因此利用classloader加载机制来实现懒加载</p>
+<h2 id="基于枚举的单例"><a href="#基于枚举的单例" class="headerlink" title="基于枚举的单例"></a>基于枚举的单例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">枚举性单例可以防止利用反射来重复构建对象</span><br></pre></td></tr></table></figure>
+<p>//获得构造器<br>Constructor<t> con = Singleton.class.getDeclaredConstructors();<br>//设置为可访问<br>con.setAccessible(true);<br>Singleton singleton1 = (Singleton)con.newInstance();<br>Singleton singleton2 = (Singleton)con.newInstance();<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;</span><br><span class="line"></span><br><span class="line">	INSTANCE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></t></p>
+<p>JVM会阻止反射获取枚举类的私有构造方法</p>
 
       
     </div>
@@ -455,8 +452,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/30/GitHub新手教程/" rel="next" title="GitHub新手教程">
-                <i class="fa fa-chevron-left"></i> GitHub新手教程
+              <a href="/2018/12/03/Spring的AOP/" rel="next" title="Spring的AOP">
+                <i class="fa fa-chevron-left"></i> Spring的AOP
               </a>
             
           </div>
@@ -464,10 +461,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/22/HQL/" rel="prev" title="HQL">
-                HQL <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -595,7 +588,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化对象-PO-News类"><span class="nav-number">1.</span> <span class="nav-text">持久化对象(PO)News类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完成消息插入的代码"><span class="nav-number">2.</span> <span class="nav-text">完成消息插入的代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#单线程版单例"><span class="nav-number">1.</span> <span class="nav-text">单线程版单例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加锁的版单例"><span class="nav-number">2.</span> <span class="nav-text">加锁的版单例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最简单加锁"><span class="nav-number">2.1.</span> <span class="nav-text">最简单加锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双重检查锁定"><span class="nav-number">2.2.</span> <span class="nav-text">双重检查锁定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于静态内部类"><span class="nav-number">2.3.</span> <span class="nav-text">基于静态内部类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于枚举的单例"><span class="nav-number">2.4.</span> <span class="nav-text">基于枚举的单例</span></a></li></ol></li></ol></div>
             
 
           </div>

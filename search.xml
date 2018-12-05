@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[多线程下的单例模式]]></title>
+    <url>%2F2018%2F12%2F05%2F%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E7%9A%84%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[单例模式所要实现的目标非常简单，保持一个类有且仅有一个实例，严格来说所谓的“一个类有且仅有一个实例”隐含着一个前提–这个类是一个Java虚拟机实例中的一个Class Loader所加载的类。这是考虑到了Java虚拟机的Class Loader机制：同一个类可以被多个Class Loader加载，这些Class Loader各自创建这个类的实例，因此如果有多个Class Loader加载同一个类，那么所谓的单例就无法满足，被创建的实例数就等于加载这个类的Class Loader数如果单例初始值是null，还未构建，则构建单例对象并返回，这是懒汉模式，如果单例对象一开始就被主动构建不需要判空操作，这是饿汉模式，出于性能的考虑，不少单例模式的实现会采用延迟加载，仅在需要用到相应实例的时候才创建实例， 单线程版单例1234567891011121314public class Singleton &#123; private static Singleton instance = null; private Singleton() &#123; //什么也不做 &#125; public static Singleton getSingleton() &#123; if(null == instance) &#123; instance = new Singleton(); &#125; return instance; &#125;&#125; 加锁的版单例最简单加锁12345678public static Singleton getSingleton() &#123; synchronized (Singleton.class) &#123; if(null == instance) &#123; instance = new Singleton(); &#125; &#125; return instance;&#125; 这意味着每次执行线程都要申请锁，为避免锁开销，设计出双重检查锁定 双重检查锁定12345678910public static Singleton getSingleton() &#123; if(null == instance) &#123; //1 synchronized (Singleton.class) &#123; if(null == instance) &#123; //2 instance = new Singleton(); //3 &#125; &#125; &#125; return instance;&#125; 看似既避免了锁开销又保障了线程安全，实则暗藏危机，因为还有重排序的因素，操作3可划分成3个子操作 objRef = allocate(Singleton.class)//分配对象需要的储存空间 incokeConstructor(objRef)//初始化objRef引用的对象 instance = objRef;//将对象引用写入共享变量重排序后可能顺序为132,即变量instance的值不是null,但该变量引用的对象中某些实例变量的值仍是默认值而不是构造函数里的初始值，也就是线程在执行操作1时发现instance不是null，但是该变量未初始化完毕，这就可能导致程序出错！只要把instace参数用volatile修饰即可基于静态内部类12345678910111213141516public class Singleton &#123; private static Singleton instance = null; private Singleton() &#123; //什么也不做 &#125; private static class InstanceHolder &#123; final static Singleton INSTANCE = new Singleton(); &#125; public static Singleton getSingleton() &#123; return InstanceHolder.INSTANCE; &#125;&#125; 从外部无法访问静态内部类，只有调用getInstace方法才能得到单例对象，INSTANCE对象初始化时机并不是类被加载的时候，而是调用getInstance时因此利用classloader加载机制来实现懒加载 基于枚举的单例1枚举性单例可以防止利用反射来重复构建对象 //获得构造器Constructor con = Singleton.class.getDeclaredConstructors();//设置为可访问con.setAccessible(true);Singleton singleton1 = (Singleton)con.newInstance();Singleton singleton2 = (Singleton)con.newInstance();1234public enum Singleton &#123; INSTANCE;&#125; JVM会阻止反射获取枚举类的私有构造方法]]></content>
+      <categories>
+        <category>多线程</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Spring的AOP]]></title>
     <url>%2F2018%2F12%2F03%2FSpring%E7%9A%84AOP%2F</url>
     <content type="text"><![CDATA[Aspect Orient Progeamming面向切面编程用于处理系统中分布于各个模块的交叉关注点的问题，在javaEE中处理一些具有横切性质的系统服务，如事务管理，安全检查，缓存 AspectJAspectJ是基于java的AOP框架，是java领域最流行的AOP框架,Spring也引入了对AspectJ的支持]]></content>
