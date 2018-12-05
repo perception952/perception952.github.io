@@ -88,7 +88,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/12/05/多线程下的单例模式/index.html">
 <meta property="og:site_name" content="学习随笔">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-05T07:04:36.223Z">
+<meta property="og:updated_time" content="2018-12-05T07:09:29.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程下的单例模式">
 
@@ -401,9 +401,8 @@
 </li>
 </ol>
 <p>从外部无法访问静态内部类，只有调用getInstace方法才能得到单例对象，INSTANCE对象初始化时机并不是类被加载的时候，而是调用getInstance时因此利用classloader加载机制来实现懒加载</p>
-<h2 id="基于枚举的单例"><a href="#基于枚举的单例" class="headerlink" title="基于枚举的单例"></a>基于枚举的单例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">枚举性单例可以防止利用反射来重复构建对象</span><br></pre></td></tr></table></figure>
-<p>//获得构造器<br>Constructor<t> con = Singleton.class.getDeclaredConstructors();<br>//设置为可访问<br>con.setAccessible(true);<br>Singleton singleton1 = (Singleton)con.newInstance();<br>Singleton singleton2 = (Singleton)con.newInstance();<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;</span><br><span class="line"></span><br><span class="line">	INSTANCE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></t></p>
-<p>JVM会阻止反射获取枚举类的私有构造方法</p>
+<h2 id="基于枚举的单例"><a href="#基于枚举的单例" class="headerlink" title="基于枚举的单例"></a>基于枚举的单例</h2><p>枚举性单例可以防止利用反射来重复构建对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">反射</span><br><span class="line">//获得构造器</span><br><span class="line">Constructor&lt;T&gt; con = Singleton.class.getDeclaredConstructors();</span><br><span class="line">//设置为可访问</span><br><span class="line">con.setAccessible(true);</span><br><span class="line">Singleton singleton1 = (Singleton)con.newInstance();</span><br><span class="line">Singleton singleton2 = (Singleton)con.newInstance();</span><br></pre></td></tr></table></figure></p>
+<p>JVM会阻止反射获取枚举类的私有构造方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;</span><br><span class="line"></span><br><span class="line">	INSTANCE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
