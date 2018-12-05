@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="学习随笔">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://i4.fuimg.com/661990/d163f6dba9c5e3a5.jpg">
-<meta property="og:updated_time" content="2018-12-05T10:08:41.629Z">
+<meta property="og:updated_time" content="2018-12-05T10:28:21.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java反射">
 <meta name="twitter:image" content="http://i4.fuimg.com/661990/d163f6dba9c5e3a5.jpg">
@@ -395,7 +395,12 @@
 <li>在运行时判断任意一个对象所属的类</li>
 <li>在运行时构造任意一个类的对象</li>
 <li>在运行时判断任意一个类所具有的成员变量和方法(private方法也可以)</li>
-<li>在运行时调用任意一个对象的方法<br><img src="http://i4.fuimg.com/661990/d163f6dba9c5e3a5.jpg" alt="反射"><h1 id="获取Class对象的三种方式"><a href="#获取Class对象的三种方式" class="headerlink" title="获取Class对象的三种方式"></a>获取Class对象的三种方式</h1>Student stu = new Student();<br>//调用某个对象的getclass方法<br>1.Class stuClass = stu.getClass()<br>//直接获取某一个对象的class<br>2.Class stuClass = Student.class;<br>//Class类的静态方法<br>3.Class stuClass = Class.forname(包名.类名);<br>在运行期间一个类只能产生一个Class对象<h1 id="判断是否为某个类的实例"><a href="#判断是否为某个类的实例" class="headerlink" title="判断是否为某个类的实例"></a>判断是否为某个类的实例</h1>public native boolean isInstance(Object obj)<h1 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h1></li>
+<li>在运行时调用任意一个对象的方法<br><img src="http://i4.fuimg.com/661990/d163f6dba9c5e3a5.jpg" alt="反射"><h1 id="获取Class对象的三种方式"><a href="#获取Class对象的三种方式" class="headerlink" title="获取Class对象的三种方式"></a>获取Class对象的三种方式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Student stu = new Student();</span><br><span class="line">//调用某个对象的getclass方法</span><br><span class="line">1.Class stuClass = stu.getClass()</span><br><span class="line">//直接获取某一个对象的class</span><br><span class="line">2.Class stuClass = Student.class;</span><br><span class="line">//Class类的静态方法</span><br><span class="line">3.Class stuClass = Class.forname(包名.类名);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在运行期间一个类只能产生一个Class对象</p>
+<h1 id="判断是否为某个类的实例"><a href="#判断是否为某个类的实例" class="headerlink" title="判断是否为某个类的实例"></a>判断是否为某个类的实例</h1><p>public native boolean isInstance(Object obj)<br>class.isInstance(obj);</p>
+<h1 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h1><ul>
 <li>Class对象的newInstance()方法类创建<br>Object object =  class.newInstance();</li>
 <li>先通过Class对象获取指定的Constructor对象，再调用Constructor对象的newInstance()方法来创建实例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//先获取无参数构造器</span><br><span class="line">Constructor con = c.getConstructor(null);</span><br><span class="line">//根据构造器创建实例</span><br><span class="line">Object object = con.newInstance(参数);</span><br></pre></td></tr></table></figure>
 </li>
