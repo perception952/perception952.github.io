@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringIoC">
+<meta property="og:url" content="http://yoursite.com/2018/12/08/SpringIoC/index.html">
+<meta property="og:site_name" content="学习随笔">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-08T08:22:45.301Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringIoC">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'Y3D4WAA7GC',
+      apiKey: '1b48c21ddfde26d6155d51192992873b',
+      indexName: 'Index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/08/SpringIoC/"/>
+
+
+
+
+
+  <title>SpringIoC | 学习随笔</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学习随笔</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hello,world</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/SpringIoC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李晨阳">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习随笔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringIoC</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-08T15:58:45+08:00">
+                2018-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;控制反转(Inversion of Control)也称依赖注入(Dependcy Injection)是Spring容器的核心功能，Spring容器作为一个超级工厂，负责创建所有java对象，这些对象成为Bean,Spring使用依赖注入的方式来管理<br>Bean之间的依赖关系，其核心思想是工厂模式<br>当某个java对象需要调用另一个对象时在传统模式下</p>
+<ul>
+<li>原始做法：调用者主动创建被依赖对象，然后再调用被依赖对象的方法</li>
+<li>简单工厂：调用者先找到被依赖对象的工厂，然后主动通过工厂去获取被依赖对象，最后再调用被依赖对象的方法<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原始做法会导致调用者与被依赖对象的硬编码耦合，非常不利于项目的维护，升级，对于简单工厂模式，调用者面向被依赖对象的接口编程，<br>将被依赖对象的创建交给工厂，调用者通过工厂来获得被依赖组件，简单工厂避免了类层次的硬编码耦合，只需与被依赖对象的接口耦合，但<br>会带来调用组件与被依赖对象工厂的耦合<br>使用Spring框架后，调用者无需主动获取被依赖对象，这要被动接受Spring容器为调用者的成员变量赋值即可，即调用者获取被依赖对象的<br>方式由原来的主动获取变成了被动接受，也就是所谓的控制反转，无论是调用者还是被依赖对象都应该为之定义接口，程序应该面向他们的接口，<br>而不是面向实现类编程，这样以便程序后期的升级、维护<br>下面用工厂模式实现类似SpringIOC的实例<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;GBK&quot;?&gt;</span><br><span class="line">&lt;beans&gt;	</span><br><span class="line">	&lt;bean id=&quot;computer&quot; class=&quot;lee.Computer&quot;&gt;</span><br><span class="line">		&lt;!-- 为name注入基本类型的值 --&gt;</span><br><span class="line">		&lt;property name=&quot;name&quot; value=&quot;孙悟空的电脑&quot;/&gt;</span><br><span class="line">		&lt;!-- 为out注入工厂中其他对象 --&gt;</span><br><span class="line">		&lt;property name=&quot;out&quot; ref=&quot;betterPrinter&quot;/&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br><span class="line">	&lt;!-- 配置两个Bean实例 --&gt;</span><br><span class="line">	&lt;bean id=&quot;printer&quot; class=&quot;lee.Printer&quot;/&gt; </span><br><span class="line">	&lt;bean id=&quot;betterPrinter&quot; class=&quot;lee.BetterPrinter&quot;/&gt;</span><br><span class="line">	&lt;!-- 配置一个prototype行为的Bean实例  --&gt;</span><br><span class="line">	&lt;bean id=&quot;now&quot; class=&quot;java.util.Date&quot; scope=&quot;prototype&quot;/&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Application接口"><a href="#Application接口" class="headerlink" title="Application接口"></a>Application接口</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public interface ApplicationContext</span><br><span class="line">&#123;</span><br><span class="line">	// 获取指定Bean实例的方法</span><br><span class="line">	Object getBean(String name)</span><br><span class="line">		throws Exception;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="工厂类"><a href="#工厂类" class="headerlink" title="工厂类"></a>工厂类</h1><p>使用Dom4j来解析XML配置文件，并根据配置文件来创建工厂中的Bean实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line">public class CrazyitXmlApplicationContext</span><br><span class="line">	implements ApplicationContext</span><br><span class="line">&#123;</span><br><span class="line">	// 保存容器中所有单例模式的Bean实例</span><br><span class="line">	private Map&lt;String , Object&gt; objPool</span><br><span class="line">		= Collections.synchronizedMap(new HashMap&lt;String , Object&gt;());</span><br><span class="line">	// 保存配置文件对应的Document对象</span><br><span class="line">	private Document doc;</span><br><span class="line">	// 保存配置文件里的根元素</span><br><span class="line">	private Element root;</span><br><span class="line">	public CrazyitXmlApplicationContext(String filePath)</span><br><span class="line">		throws Exception</span><br><span class="line">	&#123;</span><br><span class="line">		SAXReader reader = new SAXReader();</span><br><span class="line">		doc = reader.read(new File(filePath));</span><br><span class="line">		root = doc.getRootElement();</span><br><span class="line">		initPool();</span><br><span class="line">		initProp();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public Object getBean(String name)</span><br><span class="line">		throws Exception</span><br><span class="line">	&#123;</span><br><span class="line">		Object target = objPool.get(name);</span><br><span class="line">		// 对于singleton Bean，容器已经初始化了所有Bean实例，直接返回即可</span><br><span class="line">		if (target.getClass() != String.class)</span><br><span class="line">		&#123;</span><br><span class="line">			return target;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			String clazz = (String)target;</span><br><span class="line">			// 对于prototype对象并未注入属性值</span><br><span class="line">			return Class.forName(clazz).getConstructor().newInstance();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	// 初始化容器中所有singleton Bean</span><br><span class="line">	private void initPool()</span><br><span class="line">		throws Exception</span><br><span class="line">	&#123;</span><br><span class="line">		// 遍历配置文件里的每个&lt;bean.../&gt;元素</span><br><span class="line">		for (Object obj : root.elements())</span><br><span class="line">		&#123;</span><br><span class="line">			Element beanEle = (Element)obj;</span><br><span class="line">			// 取得&lt;bean.../&gt;元素的id属性</span><br><span class="line">			String beanId = beanEle.attributeValue(&quot;id&quot;);</span><br><span class="line">			// 取得&lt;bean.../&gt;元素的class属性</span><br><span class="line">			String beanClazz = beanEle.attributeValue(&quot;class&quot;);</span><br><span class="line">			// 取得&lt;bean.../&gt;元素的scope属性</span><br><span class="line">			String beanScope = beanEle.attributeValue(&quot;scope&quot;);</span><br><span class="line">			// 如果&lt;bean.../&gt;元素的scope属性不存在，或为singleton</span><br><span class="line">			if (beanScope == null ||</span><br><span class="line">				beanScope.equals(&quot;singleton&quot;))</span><br><span class="line">			&#123;</span><br><span class="line">				// 以默认构造器创建Bean实例，并将其放入objPool中</span><br><span class="line">				objPool.put(beanId , Class.forName(beanClazz)</span><br><span class="line">					.getConstructor().newInstance());</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				// 对于非singlton Bean，存放该Bean实现类的类名。</span><br><span class="line">				objPool.put(beanId , beanClazz);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	// 初始化容器中singleton Bean的属性</span><br><span class="line">	private void initProp()</span><br><span class="line">		throws Exception</span><br><span class="line">	&#123;</span><br><span class="line">		// 遍历配置文件里的每个&lt;bean.../&gt;元素</span><br><span class="line">		for (Object obj : root.elements())</span><br><span class="line">		&#123;</span><br><span class="line">			Element beanEle = (Element)obj;</span><br><span class="line">			// 取得&lt;bean.../&gt;元素的id属性</span><br><span class="line">			String beanId = beanEle.attributeValue(&quot;id&quot;);</span><br><span class="line">			// 取得&lt;bean.../&gt;元素的scope属性</span><br><span class="line">			String beanScope = beanEle.attributeValue(&quot;scope&quot;);</span><br><span class="line">			// 如果&lt;bean.../&gt;元素的scope属性不存在，或为singleton</span><br><span class="line">			if (beanScope == null ||</span><br><span class="line">				beanScope.equals(&quot;singleton&quot;))</span><br><span class="line">			&#123;</span><br><span class="line">				// 取出objPool的指定的Bean实例</span><br><span class="line">				Object bean = objPool.get(beanId);</span><br><span class="line">				// 遍历&lt;bean.../&gt;元素的每个&lt;property.../&gt;子元素</span><br><span class="line">				for (Object prop : beanEle.elements())</span><br><span class="line">				&#123;</span><br><span class="line">					Element propEle = (Element)prop;</span><br><span class="line">					// 取得&lt;property.../&gt;元素的name属性</span><br><span class="line">					String propName = propEle.attributeValue(&quot;name&quot;);</span><br><span class="line">					// 取得&lt;property.../&gt;元素的value属性</span><br><span class="line">					String propValue = propEle.attributeValue(&quot;value&quot;);</span><br><span class="line">					// 取得&lt;property.../&gt;元素的ref属性</span><br><span class="line">					String propRef = propEle.attributeValue(&quot;ref&quot;);</span><br><span class="line">					// 将属性名的首字母大写</span><br><span class="line">					String propNameCamelize = propName.substring(0 , 1)</span><br><span class="line">						.toUpperCase() + propName.substring(1 , propName.length());</span><br><span class="line">					// 如果&lt;property.../&gt;元素的value属性值存在</span><br><span class="line">					if (propValue != null &amp;&amp; propValue.length() &gt; 0)</span><br><span class="line">					&#123;</span><br><span class="line">						// 获取设值注入所需的setter方法</span><br><span class="line">						Method setter = bean.getClass().getMethod(</span><br><span class="line">							&quot;set&quot; + propNameCamelize , String.class);</span><br><span class="line">						// 执行setter注入</span><br><span class="line">						setter.invoke(bean , propValue);</span><br><span class="line">					&#125;</span><br><span class="line">					if (propRef != null &amp;&amp; propRef.length() &gt; 0)</span><br><span class="line">					&#123;</span><br><span class="line">						// 取得需要被依赖注入的Bean实例</span><br><span class="line">						Object target = objPool.get(propRef);</span><br><span class="line">						//objPool池中不存在指定Bean实例</span><br><span class="line">						if (target == null)</span><br><span class="line">						&#123;</span><br><span class="line">							// 此处还应处理Singleton Bean依赖prototype Bean的情形</span><br><span class="line">						&#125;</span><br><span class="line">						// 定义设值注入所需的setter方法</span><br><span class="line">						Method setter = null;</span><br><span class="line">						// 遍历target对象所所实现的所有接口</span><br><span class="line">						for (Class superInterface : target.getClass().getInterfaces())</span><br><span class="line">						&#123;</span><br><span class="line">							try</span><br><span class="line">							&#123;</span><br><span class="line">								// 获取设值注入所需的setter方法</span><br><span class="line">								setter = bean.getClass().getMethod(</span><br><span class="line">									&quot;set&quot; + propNameCamelize , superInterface);</span><br><span class="line">								// 如果成功取得该接口对应的方法，直接跳出循环</span><br><span class="line">								break;</span><br><span class="line">							&#125;</span><br><span class="line">							catch (NoSuchMethodException ex)</span><br><span class="line">							&#123;</span><br><span class="line">								// 如果没有找到对应的setter方法，继续下次循环</span><br><span class="line">								continue;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">						// 如果setter方法依然为null，</span><br><span class="line">						// 则直接取得target实现类对应的setter方法</span><br><span class="line">						if (setter == null)</span><br><span class="line">						&#123;</span><br><span class="line">							setter = bean.getClass().getMethod(</span><br><span class="line">								&quot;set&quot; + propNameCamelize , target.getClass());</span><br><span class="line">						&#125;</span><br><span class="line">						// 执行setter注入</span><br><span class="line">						setter.invoke(bean , target);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Output接口"><a href="#Output接口" class="headerlink" title="Output接口"></a>Output接口</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface Output</span><br><span class="line">&#123;</span><br><span class="line">	// 接口里定义的属性只能是常量</span><br><span class="line">	int MAX_CACHE_LINE = 50;</span><br><span class="line">	// 接口里定义的只能是public的抽象实例方法</span><br><span class="line">	void out();</span><br><span class="line">	void getData(String msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Output实现类"><a href="#Output实现类" class="headerlink" title="Output实现类"></a>Output实现类</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class Printer implements Output</span><br><span class="line">&#123;</span><br><span class="line">	private String[] printData = new String[MAX_CACHE_LINE];</span><br><span class="line">	// 用以记录当前需打印的作业数</span><br><span class="line">	private int dataNum = 0;</span><br><span class="line">	public void out()</span><br><span class="line">	&#123;</span><br><span class="line">		// 只要还有作业，继续打印</span><br><span class="line">		while(dataNum &gt; 0)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(&quot;打印机打印：&quot; + printData[0]);</span><br><span class="line">			// 把作业队列整体前移一位，并将剩下的作业数减1</span><br><span class="line">			System.arraycopy(printData , 1, printData, 0, --dataNum);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public void getData(String msg)</span><br><span class="line">	&#123;</span><br><span class="line">		if (dataNum &gt;= MAX_CACHE_LINE)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(&quot;输出队列已满，添加失败&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			// 把打印数据添加到队列里，已保存数据的数量加1。</span><br><span class="line">			printData[dataNum++] = msg;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Output实现类-1"><a href="#Output实现类-1" class="headerlink" title="Output实现类"></a>Output实现类</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class BetterPrinter implements Output</span><br><span class="line">&#123;</span><br><span class="line">	private String[] printData = new String[MAX_CACHE_LINE * 2];</span><br><span class="line">	// 用以记录当前需打印的作业数</span><br><span class="line">	private int dataNum = 0;</span><br><span class="line">	public void out()</span><br><span class="line">	&#123;</span><br><span class="line">		// 只要还有作业，继续打印</span><br><span class="line">		while(dataNum &gt; 0)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(&quot;高速打印机正在打印：&quot; + printData[0]);</span><br><span class="line">			// 把作业队列整体前移一位，并将剩下的作业数减1</span><br><span class="line">			System.arraycopy(printData , 1, printData, 0, --dataNum);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public void getData(String msg)</span><br><span class="line">	&#123;</span><br><span class="line">		if (dataNum &gt;= MAX_CACHE_LINE * 2)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(&quot;输出队列已满，添加失败&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			// 把打印数据添加到队列里，已保存数据的数量加1。</span><br><span class="line">			printData[dataNum++] = msg;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Computer类"><a href="#Computer类" class="headerlink" title="Computer类"></a>Computer类</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class Computer</span><br><span class="line">&#123;</span><br><span class="line">	private Output out;</span><br><span class="line">	private String name;</span><br><span class="line"></span><br><span class="line">	public Computer()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	// out的setter和getter方法</span><br><span class="line">	public void setOut(Output out)</span><br><span class="line">	&#123;</span><br><span class="line">		this.out = out;</span><br><span class="line">	&#125;</span><br><span class="line">	// name的setter和getter方法</span><br><span class="line">	public void setName(String name)</span><br><span class="line">	&#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	// 定义一个模拟获取字符串输入的方法</span><br><span class="line">	public void keyIn(String msg)</span><br><span class="line">	&#123;</span><br><span class="line">		out.getData(msg);</span><br><span class="line">	&#125;</span><br><span class="line">	// 定义一个模拟打印的方法</span><br><span class="line">	public void print()</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(name + &quot;开始打印...&quot;);</span><br><span class="line">		out.out();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class IoCTest</span><br><span class="line">&#123;</span><br><span class="line">	public static void main(String[] args)</span><br><span class="line">		throws Exception</span><br><span class="line">	&#123;</span><br><span class="line">		// 创建IoC容器</span><br><span class="line">		ApplicationContext ctx = new CrazyitXmlApplicationContext(&quot;beans.xml&quot;);</span><br><span class="line">		// 从IoC容器中取出computer Bean</span><br><span class="line">		Computer c = (Computer)ctx.getBean(&quot;computer&quot;);</span><br><span class="line">		// 测试Computer对象</span><br><span class="line">		c.keyIn(&quot;轻量级Java EE企业应用实战&quot;);</span><br><span class="line">		c.keyIn(&quot;疯狂Java讲义&quot;);</span><br><span class="line">		c.print();</span><br><span class="line">		System.out.println(ctx.getBean(&quot;now&quot;));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="">源码下载</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zhifubao.jpg" alt="李晨阳 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/07/快速排序/" rel="next" title="快速排序">
+                <i class="fa fa-chevron-left"></i> 快速排序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=17708846&auto=1&height=66"></iframe>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/touxiang.jpg"
+                alt="李晨阳" />
+            
+              <p class="site-author-name" itemprop="name">李晨阳</p>
+              <p class="site-description motion-element" itemprop="description">Share some experience in learning</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置文件"><span class="nav-number">1.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Application接口"><span class="nav-number">2.</span> <span class="nav-text">Application接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工厂类"><span class="nav-number">3.</span> <span class="nav-text">工厂类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output接口"><span class="nav-number">4.</span> <span class="nav-text">Output接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output实现类"><span class="nav-number">5.</span> <span class="nav-text">Output实现类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output实现类-1"><span class="nav-number">6.</span> <span class="nav-text">Output实现类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Computer类"><span class="nav-number">7.</span> <span class="nav-text">Computer类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试类"><span class="nav-number">8.</span> <span class="nav-text">测试类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李晨阳</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
